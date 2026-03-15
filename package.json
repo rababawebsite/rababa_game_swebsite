@@ -1,0 +1,23 @@
+{
+  "name": "rababa-games",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:site": "vite",
+    "dev:dashboard": "npm --prefix dashboard run dev",
+    "build": "vite build",
+    "build:dashboard": "npm --prefix dashboard run build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.13.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.1",
+    "vite": "^8.0.0"
+  }
+}

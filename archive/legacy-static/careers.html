@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- META TAGS -->
+        <meta charset="utf-8">
+        <meta name="author" content="AtypicalThemes">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"> 
+
+        <!-- WEBSITE TITLE & DESCRIPTION -->
+        <title>STRIDER - A Game Studio Template</title>
+        <meta name="description" content="Showcase your pc games in the best light">
+        <meta name="keywords" content="game studio, games, indie, studio, video game,">
+
+        <!-- META TAGS FOR SOCIAL MEDIA -->
+        <meta property="og:site_name" content="Strider" /><!-- The name of your website or brand -->
+        
+        <meta property="og:site" content="https://atypicalthemes.com/portfolio/strider_demo/index.html" /><!-- Your full website URL (often the homepage) -->
+        
+        <meta property="og:title" content="Strider game-studio template"/> <!-- The title of the page/post (shows as the headline in social previews) -->
+        
+        <meta property="og:description" content="Showcase your pc games in the best light" /><!-- A short description of the page (appears below the title in previews) -->
+        
+        <meta property="og:image" content="images/preview.webp" /><!-- A direct link to the preview image (should be JPG or PNG, minimum 1200x630px recommended) -->
+        
+        <meta property="og:url" content="https://atypicalthemes.com/" /><!-- The canonical URL of the page (where the link will go when clicked) -->
+        
+        <meta property="og:type" content="article" /><!-- Type of content: usually 'article' for blog posts or 'website' for homepages -->
+
+
+        <!-- Favicon and Apple Icons -->
+        <link rel="apple-touch-icon" sizes="57x57" href="images/favicon/apple-icon-57x57.webp">
+        <link rel="apple-touch-icon" sizes="60x60" href="images/favicon/apple-icon-60x60.webp">
+        <link rel="apple-touch-icon" sizes="72x72" href="images/favicon/apple-icon-72x72.webp">
+        <link rel="apple-touch-icon" sizes="76x76" href="images/favicon/apple-icon-76x76.webp">
+        <link rel="apple-touch-icon" sizes="114x114" href="images/favicon/apple-icon-114x114.webp">
+        <link rel="apple-touch-icon" sizes="120x120" href="images/favicon/apple-icon-120x120.webp">
+        <link rel="apple-touch-icon" sizes="144x144" href="images/favicon/apple-icon-144x144.webp">
+        <link rel="apple-touch-icon" sizes="152x152" href="images/favicon/apple-icon-152x152.webp">
+        <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-icon-180x180.webp">
+        <link rel="icon" type="image/webp" sizes="192x192"  href="images/favicon/android-icon-192x192.webp">
+        <link rel="icon" type="image/webp" sizes="32x32" href="images/favicon/favicon-32x32.webp">
+        <link rel="icon" type="image/webp" sizes="96x96" href="images/favicon/favicon-96x96.webp">
+        <link rel="icon" type="image/webp" sizes="16x16" href="images/favicon/favicon-16x16.webp">
+
+        <!-- FONTS -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Varela+Round&display=swap&family=Raleway:wght@200&display=swap" rel="stylesheet">
+        
+        <!-- STYLES -->
+        <!-- Bootstrap -->
+        <link rel="preload" href="css/bootstrap.min.css" as="style" onload="this.rel='stylesheet'">
+        <!-- Lightbox -->
+        <link rel="preload" href="css/glightbox.min.css" as="style" onload="this.rel='stylesheet'">
+        <!-- Animations -->
+        <link rel="preload" href="css/animations.css" as="style" onload="this.rel='stylesheet'">
+        <!-- Splide Carousel -->
+        <link rel="preload" href="css/splide.min.css" as="style" onload="this.rel='stylesheet'">
+        <!-- Main Stylesheet -->
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+    <body>
+
+        <!-- Loading Screen -->
+        <div id="loader-wrapper" class="uppercase">
+            <div class="flex-wrapper">
+                <p class="loader-logo">Strider</p>
+                <div id="progress"></div>
+                <p class="loader-text">Loading</p>
+            </div>
+        </div>
+
+        <!-- //// HEADER //// -->
+        <header id="main-header">
+            <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
+                <div class="container">
+                    <!-- Site Logo -->
+                    <a id="main-logo" class="navbar-brand uppercase" href="index.html">Strider</a>
+                    <!-- IMG Logo 
+                    <a href="index.html"><img src="images/company_logo.webp" id="main-logo" class="navbar-brand" alt="Site Logo"></a>
+                    -->
+                </div>
+            </nav>
+        </header><!-- Header End -->
+
+        <!-- /// Cookie Management /// -->
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Cookie blocker message (shown when cookies are blocked) -->
+                <div id="policy-message" class=" " aria-live="polite" role="status">
+                <p>This message appears when cookies are blocked by the browser.</p>
+                <button type="button" id="close-policy-message" class="close" aria-label="Close">
+                        <span aria-hidden="true">X</span>
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <!-- Cookie notification bar -->
+                <div id="policy-bar" class="policy-notice-bar">
+                    <p>We use cookies for a better user experience. Please consult our <a href="privacy_policy.html" aria-label="open privacy policy page">Privacy Policy</a> for more info.</p>
+                    <div class="policy-bar-buttons">
+                        <button type="button" id="accept-button" class="uppercase">Accept All</button>
+                        <button type="button" id="reject-button" class="uppercase">Reject All</button>
+                        <button type="button" class="uppercase" data-bs-toggle="modal" data-bs-target="#policy-modal">Manage Cookies</button>
+                    </div>
+                    <button type="button" id="close-policy-bar" class="close" aria-label="Close">
+                        <span aria-hidden="true">X</span>
+                    </button>
+                    <!-- Cookie Preferences Modal -->
+                    <div id="policy-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="privacy-options" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 id="privacy-options" class="modal-title capitalized">Cookie Preferences</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc mi eros, 
+                                        scelerisque vitae diam eu, malesuada.</p>
+                                    <div class="checkbox-wrapper">
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="cpref-1" checked disabled>
+                                            <label class="form-check-label" for="cpref-1">Example cookie</label>
+                                            <p class="subtle">We use this cookies to improve user experience.</p>
+                                        </div>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="cpref-2">
+                                            <label class="form-check-label" for="cpref-2">Example cookie</label>
+                                            <p class="subtle">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                        </div>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="cpref-3">
+                                            <label class="form-check-label" for="cpref-3">Example cookie</label>
+                                            <p class="subtle">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                        </div>
+                                    </div>
+                                    <p>Please consult our <a href="privacy_policy.html" aria-label="open privacy policy page">Privacy Policy</a> for more info.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- Cookies modal end -->
+                </div><!-- Notification bar end -->
+            </div>
+        </div>
+
+        <!-- /// CAREERS SECTION /// -->   
+        <section class="careers-page">
+            <div class="container">
+                <div class="hero medium-margin">
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <h1 class="uppercase">Want to <br> be part of <br> <span class="strong">Our team?</span></h1>
+                        </div>
+                        <div class="col-xl-6 d-flex justify-content-center">
+                            <img src="images/brand.webp" class="company-logo img-fluid" alt="Gorilla Games logo">
+                        </div>
+                    </div>
+                </div>
+                <div class="row medium-margin">
+
+                    <!-- Job perks -->
+                    <div class="col-lg-6">
+                        <h2 class="capitalized tiny-margin">Job Perks</h2>
+                        <ul class="job-perks">
+                            <li><span class="highlighted">+</span> Develop your skills</li>
+                            <li><span class="highlighted">+</span> Nourish your passion</li>
+                            <li><span class="highlighted">+</span> Good compensation and benefits</li>
+                            <li><span class="highlighted">+</span> Bring joy with your creations</li>
+                            <li><span class="highlighted">+</span> Work with like minded people</li>
+                            <li><span class="highlighted">+</span> Develop work satisfaction</li>
+                        </ul>
+                    </div>
+
+                    <!--Team video -->
+                    <div class="col-lg-6 d-flex justify-content-center">
+                        <a href="https://www.youtube.com/watch?v=KcozZ1rLwl8" class="glightbox team-video" aria-label="Watch a video showcasing our team">
+                            <img src="images/careers-page-team.webp" class="img-fluid team-video-bg" alt="A photo of our team">
+                            <img src="images/icons/play-button.svg" class="play-button team" alt="Play Video">
+                        </a>
+                    </div>
+                </div>
+                <div class="row jobs-carousel">
+                    <h2 class="capitalized tiny-margin">Open Positions</h2>
+                    <div id="jobs-carousel" class="splide" role="group" aria-label="Jobs Carousel">
+                        <div class="splide__track" aria-live="polite">
+                            <ul class="splide__list">
+
+                                <!-- Job card -->
+                                <li class="splide__slide">
+                                    <div class="job-card">
+                                        <h3 class="capitalized">Senior Programmer</h3>
+                                        <hr>
+                                        <p>We are looking for a code wizard to help us bring our ideas to life...</p>
+                                        <button type="button" class="button capitalized" data-bs-toggle="modal" data-bs-target="#job-1-modal" aria-label="View job position"><span>View Job</span></button>
+                                    </div>
+                                </li><!-- card end -->
+
+                                <!-- Job card -->
+                                <li class="splide__slide">
+                                    <div class="job-card">
+                                        <h3 class="capitalized">Level Designer</h3>
+                                        <hr>
+                                        <p>We are looking for a code wizard to help us bring our ideas to life...</p>
+                                        <button type="button" class="button capitalized" data-bs-toggle="modal" data-bs-target="#job-2-modal" aria-label="View job position"><span>View Job</span></button>
+                                    </div>
+                                </li><!-- card end -->
+
+                                <!-- Job card -->
+                                <li class="splide__slide">
+                                    <div class="job-card">
+                                        <h3 class="capitalized">AI Engineer</h3>
+                                        <hr>
+                                        <p>We are looking for a code wizard to help us bring our ideas to life...</p>
+                                        <button type="button" class="button capitalized" data-bs-toggle="modal" data-bs-target="#job-3-modal" aria-label="View job position"><span>View Job</span></button>
+                                    </div>
+                                </li><!-- card end -->
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Job Modal -->
+                    <div class="modal fade" id="job-1-modal" tabindex="-1" role="dialog" aria-labelledby="senior-programmer" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2 class="modal-title capitalized" id="senior-programmer">Senior Programmer</h2>
+                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <h3 class="capitalized">The Ideal Candidate</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tincidunt, nisl non mattis sollicitudin, risus quam tempor sem, vel interdum est libero non odio.</p>
+                                    <ul class="skill-list capitalized">
+                                        <li>c++</li>
+                                        <li>dream weaver</li>
+                                        <li>unreal engine</li>
+                                        <li>blender</li>
+                                        <li>scale form</li>
+                                    </ul>
+                                    <br>
+                                    <h3 class="capitalized">Requirements</h3>
+                                    <ul class="job-requirements">
+                                        <li><p>B.Sc. in Computer Science and/or Mathematics</p></li>
+                                        <li><p>Proficient with c++ and object-oriented programming</p></li>
+                                        <li><p>Development experience in the games industry a plus.</p></li>
+                                        <li><p>Strong communication and organizational skills</p></li>
+                                        <li><p>Must work well under pressure and handle multiple tasks</p></li>
+                                        <li><p>Passion for making GREAT games</p></li>
+                                    </ul>
+                                    <br>
+                                    <h3 class="capitalized">How to Apply</h3>
+                                    <p>If you think you have what it takes to join our team you an apply here <a href="mailto:office@example.com">office@example.com</a></p>
+                                </div>
+                                <div class="modal-footer capitalized">
+                                    <button type="button" class="button secondary" data-bs-dismiss="modal" aria-label="Close Modal"><span>Close</span></button>
+                                    <a href="mailto:office@example.com" class="button" aria-label="Apply for the job via mail"><span>Apply</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- modal end -->
+
+                    <!-- Job Modal -->
+                    <div class="modal fade" id="job-2-modal" tabindex="-1" role="dialog" aria-labelledby="level-designer" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2 class="modal-title capitalized" id="level-designer">Level Designer</h2>
+                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <h3 class="capitalized">The Ideal Candidate</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tincidunt, nisl non mattis sollicitudin, risus quam tempor sem, vel interdum est libero non odio.</p>
+                                    <ul class="skill-list capitalized">
+                                        <li>c++</li>
+                                        <li>dream weaver</li>
+                                        <li>unreal engine</li>
+                                        <li>blender</li>
+                                        <li>scale form</li>
+                                    </ul>
+                                    <br>
+                                    <h3 class="capitalized">Requirements</h3>
+                                    <ul class="job-requirements">
+                                        <li><p>+ B.Sc. in Computer Science and/or Mathematics</p></li>
+                                        <li><p>+ Proficient with c++ and object-oriented programming</p></li>
+                                        <li><p>+ Development experience in the games industry a plus.</p></li>
+                                        <li><p>+ Strong communication and organizational skills</p></li>
+                                        <li><p>+ Must work well under pressure and handle multiple tasks</p></li>
+                                        <li><p>+ Passion for making GREAT games</p></li>
+                                    </ul>
+                                    <br>
+                                    <h3 class="capitalized">How to Apply</h3>
+                                    <p>If you think you have what it takes to join our team you an apply here <a href="mailto:office@example.com" >office@example.com</a></p>
+                                </div>
+                                <div class="modal-footer capitalized">
+                                    <button type="button" class="button secondary" data-bs-dismiss="modal" aria-label="Close Modal"><span>close</span></button>
+                                    <a href="mailto:office@example.com" class="button" aria-label="Apply for the job via mail"><span>apply</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- modal end -->
+
+                    <!-- Job Modal -->
+                    <div class="modal fade" id="job-3-modal" tabindex="-1" role="dialog" aria-labelledby="ai-engineer" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2 class="modal-title capitalized" id="ai-engineer">AI Engineer</h2>
+                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <h3 class="capitalized">The Ideal Candidate</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tincidunt, nisl non mattis sollicitudin, risus quam tempor sem, vel interdum est libero non odio.</p>
+                                    <ul class="skill-list capitalized">
+                                        <li>c++</li>
+                                        <li>dream weaver</li>
+                                        <li>unreal engine</li>
+                                        <li>blender</li>
+                                        <li>scale form</li>
+                                    </ul>
+                                    <br>
+                                    <h3 class="capitalized">Requirements</h3>
+                                    <ul class="job-requirements">
+                                        <li><p>+ B.Sc. in Computer Science and/or Mathematics</p></li>
+                                        <li><p>+ Proficient with c++ and object-oriented programming</p></li>
+                                        <li><p>+ Development experience in the games industry a plus.</p></li>
+                                        <li><p>+ Strong communication and organizational skills</p></li>
+                                        <li><p>+ Must work well under pressure and handle multiple tasks</p></li>
+                                        <li><p>+ Passion for making GREAT games</p></li>
+                                    </ul>
+                                    <br>
+                                    <h3 class="capitalized">How to Apply</h3>
+                                    <p>If you think you have what it takes to join our team you an apply here <a href="mailto:office@example.com" >office@example.com</a></p>
+                                </div>
+                                <div class="modal-footer capitalized">
+                                    <button type="button" class="button secondary" data-bs-dismiss="modal" aria-label="Close Modal"><span>close</span></button>
+                                    <a href="mailto:office@example.com" class="button" aria-label="Apply for the job via mail"><span>apply</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- modal end -->
+                </div>
+            </div>
+        </section><!-- section end -->
+
+        <!-- /// FOOTER /// -->
+        <footer id="main-footer" class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <!-- Copyright Text -->
+                        <p id="copyright">&copy; Atypical Themes <span id="year"> </span></p><!-- Copyright Text -->
+                    </div>
+                    <div class="col-lg-6">
+                        <ul class="footer-links text-center">
+                            <li><a href="privacy_policy.html">Privacy &amp; Cookie Policy</a></li>
+                            <li><a href="terms_and_conditions.html">Terms &amp; Conditions</a></li>
+                            <li><button type="button" class="capitalized" data-bs-toggle="modal" data-bs-target="#policy-modal">Manage Cookies</button></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3">
+                        <!-- Social Media Links -->
+                        <ul class="socials">
+                            <li>
+                                <a href="#" aria-label="Visit us on Facebook">
+                                    <i class="fab fa-facebook fa-lg"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" aria-label="Visit us on X (Twitter)">
+                                    <i class="fab fa-x-twitter fa-lg"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" aria-label="Visit us on Instagram">
+                                    <i class="fab fa-instagram fa-lg"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" aria-label="Check out our Youtube channel">
+                                    <i class="fab fa-youtube fa-lg"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" aria-label="Join our Discord">
+                                    <i class="fab fa-discord fa-lg"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer><!-- Footer End -->
+        
+    <!-- //// SCRIPTS //// -->
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/glightbox.min.js" defer></script>
+        <script src="js/careers.js" defer></script>
+        <script src="js/splide.min.js" defer></script>
+        <script src="https://kit.fontawesome.com/71697cf5e4.js" crossorigin="anonymous" defer></script>
+    </body>
+</html>

@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- META TAGS -->
+        <meta charset="utf-8">
+        <meta name="author" content="AtypicalThemes">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"> 
+
+        <!-- WEBSITE TITLE & DESCRIPTION -->
+        <title>STRIDER - A Game Studio Template</title>
+        <meta name="description" content="Showcase your pc games in the best light">
+        <meta name="keywords" content="game studio, games, indie, studio, video game,">
+
+        <!-- META TAGS FOR SOCIAL MEDIA -->
+        <meta property="og:site_name" content="Strider" /><!-- The name of your website or brand -->
+        
+        <meta property="og:site" content="https://atypicalthemes.com/portfolio/strider_demo/index.html" /><!-- Your full website URL (often the homepage) -->
+        
+        <meta property="og:title" content="Strider game-studio template"/> <!-- The title of the page/post (shows as the headline in social previews) -->
+        
+        <meta property="og:description" content="Showcase your pc games in the best light" /><!-- A short description of the page (appears below the title in previews) -->
+        
+        <meta property="og:image" content="images/preview.webp" /><!-- A direct link to the preview image (should be JPG or PNG, minimum 1200x630px recommended) -->
+        
+        <meta property="og:url" content="https://atypicalthemes.com/" /><!-- The canonical URL of the page (where the link will go when clicked) -->
+        
+        <meta property="og:type" content="article" /><!-- Type of content: usually 'article' for blog posts or 'website' for homepages -->
+
+
+        <!-- Favicon and Apple Icons -->
+        <link rel="apple-touch-icon" sizes="57x57" href="images/favicon/apple-icon-57x57.webp">
+        <link rel="apple-touch-icon" sizes="60x60" href="images/favicon/apple-icon-60x60.webp">
+        <link rel="apple-touch-icon" sizes="72x72" href="images/favicon/apple-icon-72x72.webp">
+        <link rel="apple-touch-icon" sizes="76x76" href="images/favicon/apple-icon-76x76.webp">
+        <link rel="apple-touch-icon" sizes="114x114" href="images/favicon/apple-icon-114x114.webp">
+        <link rel="apple-touch-icon" sizes="120x120" href="images/favicon/apple-icon-120x120.webp">
+        <link rel="apple-touch-icon" sizes="144x144" href="images/favicon/apple-icon-144x144.webp">
+        <link rel="apple-touch-icon" sizes="152x152" href="images/favicon/apple-icon-152x152.webp">
+        <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-icon-180x180.webp">
+        <link rel="icon" type="image/webp" sizes="192x192"  href="images/favicon/android-icon-192x192.webp">
+        <link rel="icon" type="image/webp" sizes="32x32" href="images/favicon/favicon-32x32.webp">
+        <link rel="icon" type="image/webp" sizes="96x96" href="images/favicon/favicon-96x96.webp">
+        <link rel="icon" type="image/webp" sizes="16x16" href="images/favicon/favicon-16x16.webp">
+        
+        <!-- FONTS -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Varela+Round&display=swap&family=Raleway:wght@200&display=swap" rel="stylesheet">
+
+        <!-- STYLES -->
+        <!-- Bootstrap -->
+        <link rel="preload" href="css/bootstrap.min.css" as="style" onload="this.rel='stylesheet'">
+        <!-- Animations -->
+        <link rel="preload" href="css/animations.css" as="style" onload="this.rel='stylesheet'">
+        <!-- Lightbox -->
+        <link rel="preload" href="css/glightbox.min.css" as="style" onload="this.rel='stylesheet'">
+        <!-- Main Stylesheet -->
+        <link href="css/style.css" rel="stylesheet">
+
+    </head>
+    <body class="main-page">
+
+        <!-- Loading Screen -->
+        <div id="loader-wrapper" class="uppercase">
+            <div class="flex-wrapper">
+                <p class="loader-logo">Strider</p>
+                <div id="progress"></div>
+                <p class="loader-text">Loading</p>
+            </div>
+        </div>
+
+        <!-- //// HEADER //// -->
+        <header id="main-header">
+            <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
+                <div class="container">
+                    <!-- Site Logo -->
+                    <a id="main-logo" class="navbar-brand uppercase" href="#">Strider</a>
+                    <!-- IMG Logo 
+                    <a href="#"><img src="images/company_logo.webp" id="main-logo" class="navbar-brand" alt="Site Logo"></a>
+                    -->
+
+                    <!-- Dropdown Button -->
+                    <button id="hamburger" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                    </button>
+                    
+                    <!-- Navigation Links -->
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto capitalized">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#home">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#our-games">Games</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#team">About Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#contact">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header><!-- Header End -->
+
+        <!-- /// Cookie Management /// -->
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Cookie blocker info (shown when cookies are blocked) -->
+                <div id="policy-message" class=" " aria-live="polite" role="status">
+                <p>This message appears when cookies are blocked by the browser.</p>
+                <button type="button" id="close-policy-message" class="close" aria-label="Close">
+                        <span aria-hidden="true">X</span>
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <!-- Cookie notification bar -->
+                <div id="policy-bar" class="policy-notice-bar">
+                    <p>We use cookies for a better user experience. Please consult our <a href="privacy_policy.html" aria-label="open privacy policy page">Privacy Policy</a> for more info.</p>
+                    <div class="policy-bar-buttons">
+                        <button type="button" id="accept-button" class="uppercase">Accept All</button>
+                        <button type="button" id="reject-button" class="uppercase">Reject All</button>
+                        <button type="button" class="uppercase" data-bs-toggle="modal" data-bs-target="#policy-modal">Manage Cookies</button>
+                    </div>
+                    <button type="button" id="close-policy-bar" class="close" aria-label="Close">
+                        <span aria-hidden="true">X</span>
+                    </button>
+                    <!-- Cookie Preferences Modal -->
+                    <div id="policy-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="privacy-options" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 id="privacy-options" class="modal-title capitalized">Cookie Preferences</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc mi eros, 
+                                        scelerisque vitae diam eu, malesuada.</p>
+                                    <div class="checkbox-wrapper">
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="cpref-1" checked disabled>
+                                            <label class="form-check-label" for="cpref-1">Example cookie</label>
+                                            <p class="subtle">We use this cookies to improve user experience.</p>
+                                        </div>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="cpref-2">
+                                            <label class="form-check-label" for="cpref-2">Example cookie</label>
+                                            <p class="subtle">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                        </div>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="cpref-3">
+                                            <label class="form-check-label" for="cpref-3">Example cookie</label>
+                                            <p class="subtle">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                        </div>
+                                    </div>
+                                    <p>Please consult our <a href="privacy_policy.html" aria-label="open privacy policy page">Privacy Policy</a> for more info.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- Cookies modal end -->
+                </div><!-- Notification bar end -->
+            </div>
+        </div>
+
+        <!-- /// HERO SECTION /// -->
+        <section id="home" class="hero-section">
+            <div class="container-fluid">
+                <div class="row hero-unit">
+                    <div class="hero-game">
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <img src="images/hero-collage.webp" class="hero-game-img img-fluid" alt="A trio of characters from the video game Ghost Modem"><!-- hero section image -->
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="hero-game-caption">
+                                    <h2 class="uppercase">Ghost Modem</h2>
+                                    <p class="discard desktop capitalized">hover to discover</p>
+                                    <p class="discard mobile capitalized">swipe to discover</p>
+                                    <img src="images/icons/right-arrow.svg" class="img-fluid hover-arrow" alt=" ">
+                                    <div class="hero-game-description text-center">
+                                        <p>Welcome to Takatoro city, where crime lurks behind every corner and allegiances change by the second. Your choices will decide your fate in this thrilling action adventure.
+                                        </p> 
+                                        <br>
+                                        <a href="https://www.youtube.com/watch?v=JaWnEbAsFmc" class="glightbox video-button" aria-label="Watch the Ghost Modem trailer"> <!-- Your video goes here -->
+                                            <img src="images/icons/play-button.svg" class="img-fluid" alt="Play Video">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Curtain -->
+                    <div class="curtain curtain-left">
+                        <div class="hero-caption capitalized">
+                            <p>We Make</p>
+                            <h1 class="gradient-text uppercase">Awesome</h1>
+                            <p>Games</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section><!-- Hero section end -->
+
+        <!-- /// LATEST GAME /// -->
+        <section class="latest-game custom-bg large-margin">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-6 d-flex justify-content-center">
+                        <div class="latest-game left">
+                            <h2 class="uppercase">
+                                <span class="gradient-text big-text">Explore</span>
+                                <br>
+                                <span class="heading">Takatoro City</span>
+                            </h2>
+                            <br><br>
+                            <p class="text">What would you kill for? Love? Money? Power? <br> This is the question Takatoro city asks it's people every single day. <br> Five million souls, five million stories, fifty million problems.  
+                            </p>
+                            <a href="games/game1/index.html#features" class="button features uppercase">See Features</a>
+                            <button class="btn btn-outline-secondary dropdown-toggle uppercase button" type="button" data-bs-toggle="dropdown" aria-expanded="false">Buy now</button>
+                            <ul class="dropdown-menu capitalized">
+                                <li><a class="dropdown-item" href="#" aria-label="Buy on steam">Steam</a></li>
+                                <li><a class="dropdown-item" href="#" aria-label="Buy on xbox">Xbox Store</a></li>
+                                <li><a class="dropdown-item" href="#" aria-label="Buy on playstation">Playstation Store</a></li>
+                            </ul>
+                            <div class="platforms">
+                                <ul>
+                                    <li><img src="images/icons/steam.svg" alt="Available on steam"></li>
+                                    <li><img src="images/icons/ps.svg" alt="Available on playstation"></li>
+                                    <li><img src="images/icons/xbox.svg" alt="Available on xbox"></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 latest-game right"></div>
+                    <img src="images/featured-game-img.webp" class=" feature-img animation-element slide-in-right" alt="A samurai character from the video game Ghost Modem"><!-- featured character -->
+                </div>
+            </div>
+        </section><!-- section end -->
+
+        <!-- /// MORE GAMES /// -->
+        <section id="our-games" class="games-section large-margin">
+            <div class="container">
+                <div class="row small-margin">
+                    <div class="col-lg-auto">
+                        <h2 class="uppercase">
+                            <span class="gradient-text big-text">More</span>
+                            <br>
+                            <span class="heading">Games</span>
+                        </h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- Sorting tags -->
+                    <ul class="game-tags">
+                        <li><button type="button" data-filter="*">All</button></li>
+                        <li><button type="button" data-filter=".pc">PC</button></li>
+                        <li><button type="button" data-filter=".xbox">Xbox</button></li>
+                        <li><button type="button" data-filter=".ps">Playstation</button></li>
+                        <li><button type="button" data-filter=".mobile">Mobile</button></li>
+                        <li><button type="button" data-filter=".new">New Release</button></li>
+                        <li><button type="button" data-filter=".dlc">DLC</button></li>
+                    </ul>
+                </div>
+                <div class="row game-gallery capitalized">
+
+                    <!-- Top row -->
+                    <div class="row">
+                        <div class="col-lg-4 game-card dlc new"> <!-- Game Card -->
+                            <a href="games/game1/index.html" aria-label="Visit Empire DLC page">
+                                <img src="images/dlc.webp" class="img-fluid game-img" alt="Empire DLC cover art">
+                                <div class="overlay"></div>
+                                <h3>Empire<br><span class="uppercase">DLC</span></h3>
+                                <p class="promotion uppercase">new</p>
+                            </a>
+                        </div>
+                        <div class="col-lg-4 game-card dlc"> <!-- Game Card -->
+                            <a href="games/game1/index.html" aria-label="Visit Warpath DLC page">
+                                <img src="images/dlc.webp" class="img-fluid game-img" alt="Warpath DLC cover art">
+                                <div class="overlay"></div>
+                                <h3>Warpath<br><span class="uppercase">DLC</span></h3>
+                            </a>
+                        </div>
+                        <div class="col-lg-4 game-card dlc"> <!-- Game Card -->
+                            <a href="games/game1/index.html" aria-label="Visit Dragonbane DLC page">
+                                <img src="images/dlc.webp" class="img-fluid game-img" alt="Dragonbane DLC cover art">
+                                <div class="overlay"></div>
+                                <h3>Dragonbane<br><span class="uppercase">DLC</span></h3>
+                                <p class="promotion uppercase">Coming Soon</p>
+                            </a>
+                        </div>
+                    </div><!-- row end -->
+
+                    <!-- Middle row -->
+                    <div class="row">
+                        <div class="col-lg-6 game-card pc xbox ps"> <!-- Game Card -->
+                            <a href="games/game1/index.html" aria-label="Visit Ghost Modem game page">
+                                <img src="images/game-img.webp" class="img-fluid game-img" alt="Ghost Modem cover art">
+                                <div class="overlay"></div>
+                                <h3>Ghost<br>Modem</h3>
+                                <p class="promotion uppercase">Best Seller</p>
+                            </a>
+                        </div>
+                        <div class="col-lg-6 game-card pc ps"> <!-- Game Card -->
+                            <a href="games/game1/index.html" aria-label="Visit Realm Wars Online game page">
+                                <img src="images/game-img.webp" class="img-fluid game-img" alt="Ream Wars Online cover art">
+                                <div class="overlay"></div>
+                                <h3>Realm<br>Wars<br>Online</h3>
+                            </a>
+                        </div>
+                    </div><!-- row end -->
+
+                    <!-- Bottom row -->
+                    <div class="row">
+                        <div class="col-lg-6 game-card mobile"> <!-- Game Card -->
+                            <a href="games/game1/index.html" aria-label="Visit Zen Quest game page">
+                                <img src="images/game-img.webp" class="img-fluid game-img" alt="Zen Quest cover art">
+                                <div class="overlay"></div>
+                                <h3>Zen<br>Quest</h3>
+                                <p class="promotion uppercase">50% off</p>                            
+                            </a>
+                        </div>
+                        <div class="col-lg-6 game-card mobile"> <!-- Game Card -->
+                            <a href="games/game1/index.html" aria-label="Visit The Long Dark game page">
+                                <img src="images/game-img.webp" class="img-fluid game-img" alt="The Long Dark cover art">
+                                <div class="overlay"></div>
+                                <h3>The<br>Long<br>Dark</h3>
+                                <p class="promotion uppercase">Early Access</p>
+                            </a>
+                        </div>
+                    </div><!-- row end -->
+                </div>
+            </div>
+        </section><!-- section end -->
+
+        <!-- /// THE TEAM /// -->
+        <section id="team" class="team-section medium-margin">
+            <div class="container">
+                <div class="row small-margin">
+                    <div class="col-lg-6">
+                        <h2 class="uppercase">
+                            <span class="gradient-text big-text">About</span>
+                            <br>
+                            <span class="heading">Our Team</span>
+                        </h2>
+                    </div>
+                </div>
+                <div class="row small-margin team-wrapper capitalized text-center">
+                    <div class="team-cards-background"></div>
+
+                    <!-- Team member card-->
+                    <div class="col-lg-3">
+                        <figure class="team-card">
+                            <div class="team-overlay"></div>
+                            <img src="images/team.webp" class="img-fluid" alt="Portrait of Adam Smith, Studio Lead">
+                            <figcaption class="member-description">
+                                <h3>Adam Smith</h3>
+                                <p>Studio Lead</p>
+                                <ul class="socials team">
+                                    <li>
+                                        <a href="#" aria-label="Adam Smith on Facebook">
+                                            <i class="fab fa-facebook fa-lg"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" aria-label="Adam Smith on X (Twitter)">
+                                            <i class="fab fa-x-twitter fa-lg"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" aria-label="Adam Smith on Instagram">
+                                            <i class="fab fa-instagram fa-lg"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </figcaption>
+                        </figure>
+                    </div><!-- card end -->
+
+                    <!-- Team member card-->
+                    <div class="col-lg-3">
+                        <div class="team-card">
+                            <div class="team-overlay"></div>
+                            <img src="images/team.webp" class="img-fluid" alt="Portrait of Natalie Williams, Lead Designer">
+                            <div class="member-description">
+                                <h3>Natalie Williams</h3>
+                                <p>Lead Designer</p>
+                                <ul class="socials team">
+                                    <li>
+                                        <a href="#" aria-label="Natalie Williams on Facebook">
+                                            <i class="fab fa-facebook fa-lg"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" aria-label="Natalie Williams on X (Twitter)">
+                                            <i class="fab fa-x-twitter fa-lg"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" aria-label="Natalie Williams on Instagram">
+                                            <i class="fab fa-instagram fa-lg"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div><!-- card end -->
+
+                    <!-- Team member card-->
+                    <div class="col-lg-3">
+                        <div class="team-card">
+                            <div class="team-overlay"></div>
+                            <img src="images/team.webp" class="img-fluid" alt="Portrait of Antonia Smith, Social Media Manager">
+                            <div class="member-description">
+                                <h3>Antonia Smith</h3>
+                                <p>Social Media Manager</p>
+                                <ul class="socials team">
+                                    <li>
+                                        <a href="#" aria-label="Antonia Smith on Facebook">
+                                            <i class="fab fa-facebook fa-lg"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" aria-label="Antonia Smith on X (Twitter)">
+                                            <i class="fab fa-x-twitter fa-lg"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" aria-label="Antonia Smith on Instagram">
+                                            <i class="fab fa-instagram fa-lg"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div><!-- card end -->
+
+                    <!-- Team member card-->
+                    <div class="col-lg-3">
+                        <div class="team-card">
+                            <div class="team-overlay"></div>
+                            <img src="images/team.webp" class="img-fluid" alt="Portrait of Damian Jones, Lead Programmer">
+                            <div class="member-description">
+                                <h3>Damian Jones</h3>
+                                <p>Lead Programmer</p>
+                                <ul class="socials team">
+                                    <li>
+                                        <a href="#" aria-label="Damian Jones on Facebook">
+                                            <i class="fab fa-facebook fa-lg"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" aria-label="Damian Jones on X (Twitter)">
+                                            <i class="fab fa-x-twitter fa-lg"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" aria-label="Damian Jones on Instagram">
+                                            <i class="fab fa-instagram fa-lg"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div><!-- card end -->
+                </div>
+
+                <!-- Careers sub-section -->
+                <div id="careers" class="row small-margin">
+                    <div class="col-lg-7">
+                        <h3 class="capitalized">Love games? Why not join us?</h3>
+                        <hr>
+                        <p>We are a small but passionate and dynamic team brought together by our love of creating wonderful experiences. We love working together to improve our craft and each other.</p>
+                        <div class="studio-gallery">
+                            <div class="row">
+                                <div class="col-lg-4 studio-item">
+                                    <a href="images/office.webp" class="glightbox" data-title="Teammember working hard" data-gallery="studio_gallery">
+                                        <img src="images/office.webp" class="img-fluid" alt="Teammember working hard">
+                                    </a>
+                                </div>
+                                <div class="col-lg-4 studio-item">
+                                    <a href="images/office.webp" class="glightbox" data-title="Fun in the office" data-gallery="studio_gallery">
+                                        <img src="images/office.webp" class="img-fluid" alt="Fun in the office">
+                                    </a>
+                                </div>
+                                <div class="col-lg-4 studio-item">
+                                    <a href="images/office.webp" class="glightbox" data-title="Our lovely office" data-gallery="studio_gallery">
+                                        <img src="images/office.webp" class="img-fluid" alt="Our lovely office">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <p>You like learning and experimenting, you are a good team player. You are always looking to improve your skills and push yourslef.</p>
+                        <a href="careers.html" class="button capitalized">View Open Positions</a>
+                    </div>
+                    <div class="col-lg-5 animation-element slide-in-right">
+                        <img src="images/collage.webp" class="careers-section-collage img-fluid" alt="game characters">
+                    </div>
+                </div>
+            </div>
+        </section><!-- section end -->
+
+        <!-- /// NEWSLETTER /// -->
+        <section class="newsletter medium-margin">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h3 class="capitalized">Check out our Newsletter</h3>
+                        <br>
+                        <form id="newsletterForm" method="POST">
+                                <!-- Email field -->
+                                <input type="email" name="EMAIL" id="newsletter" placeholder="Your email here" required size="35" autocomplete="on" data-error="Email is required" aria-label="email field">
+
+                                <!-- GDPR consent checkboxes -->
+                                <label>
+                                    <input type="checkbox" name="gdpr[email]" value="Y" required>
+                                    I agree to receive newsletters and accept the <a href="privacy_policy.html">Privacy Policy</a>.
+                                </label>
+
+                                <!-- Privacy info -->
+                                <p>
+                                    You can unsubscribe at any time using the link in our emails.<br>  
+                                    For details on our privacy practices, please read our  
+                                    <a href="privacy_policy.html" target="_blank" class="highlight">Privacy Policy</a>.
+                                </p>
+
+                                <!-- Submit -->
+                                <button type="submit" class="uppercase button newsletter-button" aria-label="Subscribe to newsletter">Subscribe</button>
+
+                                <!-- Response -->
+                                <div id="newsletter-msg" class="mt-2 text-sm"></div>
+                            </form>
+                        <br>
+                        <ul class="newsletter-perks">
+                            <li><span class="highlight">+</span> Stay up to date with our latest games</li>
+                            <li><span class="highlight">+</span> Get special offers and discounts</li>
+                            <li><span class="highlight">+</span> Get early access to our upcoming games</li>
+                            <li><span class="highlight">+</span> Get the latest news about our studio</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6 animation-element slide-in-right">
+                        <img src="images/brand.webp" class="img-fluid" alt="Our company logo">
+                    </div>
+                </div>
+            </div>
+        </section><!-- section end -->
+
+        <!-- /// CONTACT /// -->
+        <section id="contact" class="contact-section large-margin">
+            <div class="container">
+                <div class="row small-margin">
+                    <div class="col-lg-6">
+                        <h2 class="uppercase">
+                            <span class="gradient-text big-text">Map</span>
+                            <br>
+                            <span class="heading">&amp; Contact</span>
+                        </h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- Contact form div -->
+                    <div class="col-lg-6 small-margin">
+                        <div class="contact-box">
+                            <h3 class="capitalized">Leave Us a Message</h3>
+                            <br>
+                            <form id="contactForm" data-toggle="validator">
+                                <div class="form-group">
+                                    <!-- Name Field -->
+                                    <input type="text" id="name" placeholder="Name*" required size="35" autocomplete="on" data-error="Name is required" aria-label="name field">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="form-group">
+                                    <!-- Email Field -->
+                                    <input type="email" id="email" placeholder="Email*" required size="35" autocomplete="on" data-error="Email is required" aria-label="email field">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="form-group">
+                                    <!-- Message Field -->
+                                    <textarea id="message" name="message" placeholder="Message*" required data-error="Message cannot be empty" aria-label="message field"></textarea>
+                                    <p class="subtle">* required field</p>
+                                    <div class="help-block with-errors"></div>
+                                    <!-- Submit Button -->
+                                    <button type="submit" class="button uppercase" aria-label="send-message">send message</button>
+                                    <!-- Success Message -->
+                                    <div id="msgSubmit" class="text-center hidden"></div>
+                                </div>
+                            </form>
+                        </div>
+                    </div><!-- div end -->
+
+                    <!-- Company info div -->
+                    <div class="col-lg-6 d-flex justify-content-center small-margin">
+                        <div class="contact-box">
+                            <h3 class="capitalized">Company Info</h3>
+                            <ul class="company-info">                    
+                                <li>
+                                    <i class="fa-solid fa-phone"></i>
+                                    <span class="label capitalized">Phone:</span> <a href="tel:+1(985)8575213">985 857 5213</a>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-envelope"></i>
+                                    <span class="label capitalized">Email:</span> <a href="mailto:support@atypicalthemes.com">support@atypicalthemes.com</a>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-earth-europe"></i>
+                                    <span class="label capitalized">Website:</span> <a href="https://atypicalthemes.com/">atypicalthemes.com</a>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-location-pin"></i>
+                                    <span class="label capitalized">Address:</span> <b>Suite 936 486 South Marcosside MT 57923</b>
+                                </li>
+                            </ul>
+                        </div>
+                    </div><!-- div end -->
+                </div>
+
+                <!-- Google map -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div id="map-canvas"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- /// FOOTER /// -->
+        <footer id="main-footer" class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <!-- Copyright Text -->
+                        <p id="copyright">&copy; Atypical Themes <span id="year"> </span></p>
+                    </div>
+                    <div class="col-lg-6">
+                        <ul class="footer-links text-center">
+                            <li><a href="privacy_policy.html">Privacy &amp; Cookie Policy</a></li>
+                            <li><a href="terms_and_conditions.html">Terms &amp; Conditions</a></li>
+                            <li><button type="button" class="capitalized" data-bs-toggle="modal" data-bs-target="#policy-modal">Manage Cookies</button></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3">
+                        <!-- Social Media Links -->
+                        <ul class="socials">
+                            <li>
+                                <a href="#" aria-label="Visit us on Facebook">
+                                    <i class="fab fa-facebook fa-lg"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" aria-label="Visit us on X (Twitter)">
+                                    <i class="fab fa-x-twitter fa-lg"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" aria-label="Visit us on Instagram">
+                                    <i class="fab fa-instagram fa-lg"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" aria-label="Check out our Youtube channel">
+                                    <i class="fab fa-youtube fa-lg"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" aria-label="Join our Discord">
+                                    <i class="fab fa-discord fa-lg"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer><!-- Footer End -->
+        
+        <!-- //// SCRIPTS //// -->
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/glightbox.min.js" defer></script>
+        <script src="js/isotope.pkgd.min.js" defer></script>
+        <script src="js/main.js" defer></script>
+        <script src="js/contact-form.js" defer></script>
+        <script src="js/newsletter-form.js" defer></script>
+        <script src="https://kit.fontawesome.com/71697cf5e4.js" crossorigin="anonymous" defer></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
+    </body>
+</html>
