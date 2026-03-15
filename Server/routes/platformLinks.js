@@ -4,13 +4,30 @@ import PlatformLinks from '../models/PlatformLinks.js';
 import { protect } from '../middleware/auth.js';
 
 const router = express.Router();
+const defaultSocialLinks = {
+  YouTube: 'https://www.youtube.com/user/RababaGames/',
+  Facebook: 'https://www.facebook.com/rababagames/',
+  Instagram: 'https://www.instagram.com/rababagames/',
+  Twitter: 'https://twitter.com/rababagames/',
+};
 
 // Get platform links
 router.get('/', async (req, res) => {
   try {
     let links = await PlatformLinks.findOne();
     if (!links) {
-      links = await PlatformLinks.create({});
+      links = await PlatformLinks.create(defaultSocialLinks);
+    } else {
+      let shouldSave = false;
+      Object.entries(defaultSocialLinks).forEach(([key, value]) => {
+        if (!links[key] || String(links[key]).trim() === '') {
+          links[key] = value;
+          shouldSave = true;
+        }
+      });
+      if (shouldSave) {
+        await links.save();
+      }
     }
     res.json(links);
   } catch (error) {
@@ -29,7 +46,7 @@ router.post('/update', protect, [
     }
     let links = await PlatformLinks.findOne();
     if (!links) {
-      links = await PlatformLinks.create({});
+      links = await PlatformLinks.create(defaultSocialLinks);
     }
     Object.keys(req.body).forEach(key => {
       if (links[key] !== undefined) {

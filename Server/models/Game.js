@@ -19,10 +19,40 @@ const gameSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  imageFileId: {
+    type: String,
+    default: ''
+  },
   thumbnail: {
     type: String,
     default: ''
   },
+  thumbnailFileId: {
+    type: String,
+    default: ''
+  },
+  logo: {
+    type: String,
+    default: ''
+  },
+  logoFileId: {
+    type: String,
+    default: ''
+  },
+  bannerImage: {
+    type: String,
+    default: ''
+  },
+  bannerFileId: {
+    type: String,
+    default: ''
+  },
+  galleryImages: [{
+    url: { type: String, required: true },
+    fileId: { type: String, default: '' },
+    name: { type: String, default: '' },
+    thumbnailUrl: { type: String, default: '' }
+  }],
   category: {
     type: String,
     required: true,
@@ -56,6 +86,10 @@ const gameSchema = new mongoose.Schema({
   trailerUrl: {
     type: String,
     default: ''
+  },
+  pageContent: {
+    type: mongoose.Schema.Types.Mixed,
+    default: {}
   },
   featured: {
     type: Boolean,

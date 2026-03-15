@@ -114,6 +114,109 @@ body {
   padding: 0.35rem 0.7rem;
 }
 
+.admin-media-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.admin-media-card {
+  border: 1px solid #d0d5dd;
+  border-radius: 12px;
+  background: #f8fafc;
+  padding: 0.75rem;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.admin-media-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.admin-media-preview {
+  width: 100%;
+  max-height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid #d0d5dd;
+  background: #fff;
+}
+
+.admin-media-danger {
+  background: #b42318;
+}
+
+.admin-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.6rem;
+}
+
+.admin-gallery-item {
+  border: 1px solid #d0d5dd;
+  border-radius: 10px;
+  background: #fff;
+  padding: 0.5rem;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.admin-gallery-preview {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 8px;
+  object-fit: cover;
+  background: #f2f4f7;
+}
+
+.admin-content-editor-grid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.admin-content-section {
+  border: 1px solid #d0d5dd;
+  border-radius: 12px;
+  background: #ffffff;
+  padding: 0.75rem;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.admin-content-section h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.admin-content-section-full {
+  grid-column: 1 / -1;
+}
+
+.admin-repeat-item {
+  border: 1px dashed #98a2b3;
+  border-radius: 10px;
+  background: #f9fafb;
+  padding: 0.6rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.admin-upload-field {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.admin-file-picker {
+  padding: 0.45rem 0;
+  border: 0;
+  background: transparent;
+}
+
 .admin-checks-row {
   display: flex;
   align-items: center;
@@ -204,5 +307,13 @@ select {
   .admin-topbar {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .admin-media-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-content-editor-grid {
+    grid-template-columns: 1fr;
   }
 }

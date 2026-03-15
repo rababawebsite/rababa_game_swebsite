@@ -115,13 +115,18 @@ router.delete('/:id', protect, async (req, res) => {
 // Toggle game active status
 router.patch('/:id/toggle-active', protect, async (req, res) => {
   try {
-    const game = await Game.findById(req.params.id);
+    const game = await Game.findById(req.params.id).select('isActive');
     if (!game) {
       return res.status(404).json({ error: 'Game not found' });
     }
-    game.isActive = !game.isActive;
-    await game.save();
-    res.json(game);
+
+    const updatedGame = await Game.findByIdAndUpdate(
+      req.params.id,
+      { isActive: !game.isActive },
+      { new: true }
+    );
+
+    res.json(updatedGame);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

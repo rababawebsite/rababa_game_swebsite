@@ -25,6 +25,7 @@ async function startServer() {
   const authRoutes = (await import('./routes/auth.js')).default;
   const platformLinksRoutes = (await import('./routes/platformLinks.js')).default;
   const contactRoutes = (await import('./routes/contact.js')).default;
+  const newsletterRoutes = (await import('./routes/newsletter.js')).default;
   const sitemapRoutes = (await import('./routes/sitemap.js')).default;
 
   const app = express();
@@ -150,6 +151,7 @@ async function startServer() {
   app.use('/api/upload', uploadRoutes);
   app.use('/api/platform-links', platformLinksRoutes);
   app.use('/api/contact', contactRoutes);
+  app.use('/api/newsletter', newsletterRoutes);
   // Serve dynamic sitemap generated from DB
   app.use('/', sitemapRoutes);
 

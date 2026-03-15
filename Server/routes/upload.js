@@ -22,18 +22,96 @@ const getImageKit = () => {
 const storage = multer.memoryStorage();
 
 const fileFilter = (req, file, cb) => {
-  const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+  const allowedTypes = [
+    'image/jpeg',
+    'image/png',
+    'image/gif',
+    'image/webp',
+    'video/mp4',
+    'video/webm',
+    'video/ogg',
+    'video/quicktime'
+  ];
   if (allowedTypes.includes(file.mimetype)) {
     cb(null, true);
   } else {
-    cb(new Error('Invalid file type. Only JPEG, PNG, GIF, and WebP are allowed.'), false);
+    cb(new Error('Invalid file type. Only JPG, PNG, GIF, WebP, MP4, WebM, OGG, and MOV are allowed.'), false);
   }
 };
 
 const upload = multer({
   storage,
   fileFilter,
-  limits: { fileSize: 10 * 1024 * 1024 } // 10MB limit
+  limits: { fileSize: 100 * 1024 * 1024 } // 100MB limit
+});
+
+const DEFAULT_FOLDER = '/game-ads';
+
+const sanitizeFolder = (value) => {
+  if (!value || typeof value !== 'string') {
+    return DEFAULT_FOLDER;
+  }
+
+  const trimmed = value.trim();
+  if (!trimmed) {
+    return DEFAULT_FOLDER;
+  }
+
+  const normalized = trimmed.startsWith('/') ? trimmed : `/${trimmed}`;
+
+  if (!/^\/[a-zA-Z0-9/_-]{1,120}$/.test(normalized)) {
+    return DEFAULT_FOLDER;
+  }
+
+  return normalized;
+};
+
+const sanitizeFilePrefix = (value, fallback = 'asset') => {
+  if (!value || typeof value !== 'string') {
+    return fallback;
+  }
+
+  const normalized = value
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9_-]+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '');
+
+  return normalized || fallback;
+};
+
+const uploadAsset = async (file, folder, filePrefix) => {
+  const result = await getImageKit().upload({
+    file: file.buffer.toString('base64'),
+    fileName: `${filePrefix}-${Date.now()}-${file.originalname}`,
+    folder,
+    useUniqueFileName: true,
+  });
+
+  return {
+    url: result.url,
+    fileId: result.fileId,
+    name: result.name,
+    thumbnailUrl: result.thumbnailUrl,
+    fileType: file.mimetype,
+  };
+};
+
+router.post('/asset', protect, upload.single('file'), async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ error: 'No file uploaded' });
+    }
+
+    const folder = sanitizeFolder(req.body?.folder);
+    const filePrefix = sanitizeFilePrefix(req.body?.fileNamePrefix, 'asset');
+    const result = await uploadAsset(req.file, folder, filePrefix);
+    res.json(result);
+  } catch (error) {
+    console.error('Asset upload error:', error);
+    res.status(500).json({ error: 'Failed to upload asset' });
+  }
 });
 
 // Upload single image to ImageKit
@@ -43,20 +121,12 @@ router.post('/image', protect, upload.single('image'), async (req, res) => {
       return res.status(400).json({ error: 'No file uploaded' });
     }
 
-    // Upload to ImageKit
-    const result = await getImageKit().upload({
-      file: req.file.buffer.toString('base64'),
-      fileName: `game-${Date.now()}-${req.file.originalname}`,
-      folder: '/game-ads',
-      useUniqueFileName: true,
-    });
+    const folder = sanitizeFolder(req.body?.folder);
+    const filePrefix = sanitizeFilePrefix(req.body?.fileNamePrefix, 'image');
 
-    res.json({ 
-      url: result.url,
-      fileId: result.fileId,
-      name: result.name,
-      thumbnailUrl: result.thumbnailUrl
-    });
+    // Upload to ImageKit
+    const result = await uploadAsset(req.file, folder, filePrefix);
+    res.json(result);
   } catch (error) {
     console.error('ImageKit upload error:', error);
     res.status(500).json({ error: 'Failed to upload image' });
@@ -70,26 +140,15 @@ router.post('/images', protect, upload.array('images', 5), async (req, res) => {
       return res.status(400).json({ error: 'No files uploaded' });
     }
 
+    const folder = sanitizeFolder(req.body?.folder);
+    const filePrefix = sanitizeFilePrefix(req.body?.fileNamePrefix, 'image');
+
     // Upload all files to ImageKit
-    const uploadPromises = req.files.map(file => 
-      getImageKit().upload({
-        file: file.buffer.toString('base64'),
-        fileName: `game-${Date.now()}-${file.originalname}`,
-        folder: '/game-ads',
-        useUniqueFileName: true,
-      })
-    );
+    const uploadPromises = req.files.map(file => uploadAsset(file, folder, filePrefix));
 
     const results = await Promise.all(uploadPromises);
-    
-    const urls = results.map(result => ({
-      url: result.url,
-      fileId: result.fileId,
-      name: result.name,
-      thumbnailUrl: result.thumbnailUrl
-    }));
 
-    res.json(urls);
+    res.json(results);
   } catch (error) {
     console.error('ImageKit upload error:', error);
     res.status(500).json({ error: 'Failed to upload images' });

@@ -526,7 +526,27 @@ hr {
 
 .container-fluid.video {
     position: relative;
-    height: 100vh;
+    height: auto;
+    padding: 2.5rem 1rem;
+    background: #070707;
+}
+
+.video-embed-shell {
+    width: min(1100px, 92vw);
+    aspect-ratio: 16 / 9;
+    margin: 0 auto;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+    background: #000;
+}
+
+.video-embed-shell iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
 }
 
 .video-overlay {
@@ -540,9 +560,15 @@ hr {
 
 /* -Video- */
 #bgvid {
-    width: 100%;
-    height: 100%;
+    width: min(1100px, 92vw);
+    aspect-ratio: 16 / 9;
+    height: auto;
+    margin: 0 auto;
+    display: block;
     object-fit: cover;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
 }
 
 /* --------------------------- /////////// ABOUT SECTION /////////// --------------------------- */
@@ -599,13 +625,7 @@ hr {
 }
 
 .feature-overlay {
-    position: absolute;
-    left: 0;
-    top: 0;
-    background: linear-gradient(90deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0.2) 100%);
-    width: 100%;
-    height: 100%;
-    z-index: 2;
+    display: none;
 }
 
 .feature .button {

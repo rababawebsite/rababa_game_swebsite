@@ -132,17 +132,186 @@ const seedSuperAdmin = async () => {
 // Seed Hajwala Game
 // ------------------------
 const seedHajwalaGame = async () => {
+  const hajwalaHeroImage = 'https://image.api.playstation.com/vulcan/ap/rnd/202012/1315/W5jsEgKLxoizJj1AHPTgpinL.jpg?w=1920&thumb=false';
+  const hajwalaScreenOne = 'https://image.api.playstation.com/vulcan/ap/rnd/202012/1509/VaKgh6BjZufI0yJPOWZFRQa2.jpg?w=440&thumb=false';
+  const hajwalaScreenTwo = 'https://image.api.playstation.com/vulcan/ap/rnd/202012/1509/HQaEUzPcg1to5JSlNUpdOPMo.jpg?w=440&thumb=false';
+  const hajwalaScreenThree = 'https://image.api.playstation.com/vulcan/ap/rnd/202012/1509/QyyDEoNgf96kJc9XqRQHcv6m.jpg?w=440&thumb=false';
+
+  const hajwalaPageContent = {
+    hero: {
+      title: 'HAJWALA: Drift Revolution',
+      description: 'The leading drifting and racing experience from Rababa Games, built around customization, social online play, open-road freedom, and a huge car culture audience across the Middle East.',
+      buttonText: 'Play Hajwala',
+      backgroundImage: hajwalaHeroImage
+    },
+    video: {
+      src: '',
+      poster: hajwalaHeroImage,
+      embedUrl: 'https://www.youtube.com/watch?v=ZyreS5abIVk'
+    },
+    about: {
+      heading: 'The Drift Phenomenon',
+      paragraphs: [
+        'Hajwala is Rababa Games\' flagship drifting and racing title, known for turning Gulf car culture into an accessible, social, and highly replayable driving game. Official store pages describe it as a leading racing and drifting game in the Middle East, focused on freedom, style, and player creativity.',
+        'Across Android, iPhone, iPad, Huawei AppGallery, and PlayStation 4, Hajwala combines approachable controls with tuning depth, online sessions, varied environments, and a long-running update history. Google Play lists 50M+ downloads, while the official store copy highlights more than 100 million downloads worldwide.'
+      ],
+      bullets: [
+        'Customize your car and your character',
+        'Create and design your own tracks',
+        'Drift online with up to 8 players',
+        'Choose weather, day, and night conditions'
+      ],
+      backgroundImage: hajwalaScreenThree
+    },
+    features: [
+      {
+        title: 'Customize & Tune',
+        description: 'Build a Hajwala setup that matches your own style with visual customization, tuning, and personalized design choices.',
+        image: hajwalaScreenOne,
+        alt: 'Hajwala customization and drift gameplay',
+        modal: {
+          title: 'Customization & Tuning',
+          sectionOneTitle: 'Create Your Look',
+          sectionOneText: 'Official store descriptions emphasize that you can customize both your car and your character to reflect your style. Hajwala is built around standing out with your own design instead of driving the same setup as everyone else.',
+          sectionOneImage: hajwalaScreenOne,
+          sectionOneAlt: 'Hajwala gameplay screenshot showing car customization atmosphere',
+          sectionTwoTitle: 'Tune It Your Way',
+          sectionTwoText: 'Rababa highlights the ability to tune the car the way you want, giving players control over how their ride feels and performs while drifting, cruising, or tackling different challenge types.',
+          sectionTwoImage: hajwalaScreenTwo,
+          sectionTwoAlt: 'Hajwala screenshot with high-speed road action'
+        }
+      },
+      {
+        title: 'Online With Friends',
+        description: 'Take Hajwala online with up to 8 players at once and stay connected through voice and text chat during sessions.',
+        image: hajwalaScreenTwo,
+        alt: 'Hajwala online multiplayer racing scene',
+        modal: {
+          title: 'Online Multiplayer',
+          sectionOneTitle: 'Up To 8 Players',
+          sectionOneText: 'Google Play, App Store, AppGallery, and the PlayStation Store all point to Hajwala\'s social side. The game supports online play with up to eight players at the same time, giving drifting sessions a strong community feel.',
+          sectionOneImage: hajwalaScreenTwo,
+          sectionOneAlt: 'Hajwala multiplayer driving screenshot',
+          sectionTwoTitle: 'Voice & Text Chat',
+          sectionTwoText: 'The store copy specifically mentions built-in voice and text chat so you can stay close to your friends, coordinate online sessions, and keep the social energy of the game alive no matter the distance.',
+          sectionTwoImage: hajwalaScreenThree,
+          sectionTwoAlt: 'Hajwala action shot representing shared online play'
+        }
+      },
+      {
+        title: 'Many Modes, One Culture',
+        description: 'Move between drifting, police chases, desert dune challenges, burnout events, and more without losing the core Hajwala identity.',
+        image: hajwalaScreenThree,
+        alt: 'Hajwala gameplay variety screenshot',
+        modal: {
+          title: 'Modes & Environments',
+          sectionOneTitle: 'More Than Just Drifting',
+          sectionOneText: 'Official descriptions mention a wide mix of gameplay modes and environments, including drifting, police chasing, off-road desert dunes, burnout challenges, and additional activities beyond the main driving loop.',
+          sectionOneImage: hajwalaScreenThree,
+          sectionOneAlt: 'Hajwala screenshot for multiple gameplay styles',
+          sectionTwoTitle: 'Control The Atmosphere',
+          sectionTwoText: 'Hajwala also lets players choose day or night time and adjust weather conditions, helping each session feel different while reinforcing the game\'s sandbox-style driving identity.',
+          sectionTwoImage: hajwalaHeroImage,
+          sectionTwoAlt: 'Hajwala hero artwork from official store media'
+        }
+      },
+      {
+        title: 'Big Garage, Broad Reach',
+        description: 'With more than 100 car models and a major audience across mobile and console, Hajwala has become one of Rababa\'s most recognized racing experiences.',
+        image: hajwalaHeroImage,
+        alt: 'Hajwala key art',
+        modal: {
+          title: 'Scale & Popularity',
+          sectionOneTitle: '100+ Car Models',
+          sectionOneText: 'The official store pages repeatedly highlight the size of the Hajwala garage, with more than 100 car models available for players to choose from across its different modes and environments.',
+          sectionOneImage: hajwalaScreenOne,
+          sectionOneAlt: 'Hajwala screenshot representing its garage and car variety',
+          sectionTwoTitle: 'Major Regional Success',
+          sectionTwoText: 'Google Play lists 50M+ downloads and more than 1.17M reviews, while the official marketing copy states that Hajwala has surpassed 100 million downloads worldwide. On PlayStation 4, the game launched in April 2018 and supports Arabic and English on-screen text and audio.',
+          sectionTwoImage: hajwalaScreenTwo,
+          sectionTwoAlt: 'Hajwala screenshot reflecting the game\'s scale and platform reach'
+        }
+      }
+    ],
+    media: [
+      { title: 'Official Key Art', url: hajwalaHeroImage, thumbnail: hajwalaHeroImage, alt: 'Hajwala official key art' },
+      { title: 'PS4 Screenshot One', url: hajwalaScreenOne, thumbnail: hajwalaScreenOne, alt: 'Hajwala screenshot from PlayStation Store' },
+      { title: 'PS4 Screenshot Two', url: hajwalaScreenTwo, thumbnail: hajwalaScreenTwo, alt: 'Hajwala drifting gameplay screenshot' },
+      { title: 'PS4 Screenshot Three', url: hajwalaScreenThree, thumbnail: hajwalaScreenThree, alt: 'Hajwala official gameplay screenshot' }
+    ],
+    faq: [
+      {
+        question: 'What is Hajwala about?',
+        answer: 'Hajwala is a racing and drifting game by Rababa Games focused on customization, online play, track creation, vehicle tuning, and a wide mix of driving challenges including drifting, police chases, dunes, and burnout-style events.'
+      },
+      {
+        question: 'Which platforms support Hajwala?',
+        answer: 'Official store listings show Hajwala on Android, iPhone, iPad, Huawei AppGallery, and PlayStation 4. Google Play also lists support through Google Play Games on PC for Windows.'
+      },
+      {
+        question: 'Does Hajwala support multiplayer?',
+        answer: 'Yes. The official store descriptions state that Hajwala supports online play with up to 8 players simultaneously, with voice and text chat available in online mode.'
+      },
+      {
+        question: 'What makes Hajwala stand out?',
+        answer: 'Its appeal comes from combining Gulf-region drifting culture with accessible driving, broad customization, a large car list, social online play, weather and time control, and long-running popularity across the region.'
+      }
+    ],
+    dlc: [],
+    cta: {
+      lines: ['Start', 'Your', 'Drift'],
+      buttonText: 'Get Hajwala',
+      systemRequirementsTitle: 'PLATFORM DETAILS',
+      backgroundImage: hajwalaScreenTwo
+    },
+    systemRequirements: {
+      question: 'Where can I play Hajwala?',
+      minimumTitle: 'Mobile & App Platforms',
+      minimum: [
+        'Android via Google Play',
+        'iPhone and iPad via the App Store',
+        'Huawei devices via AppGallery',
+        'Free to play with in-app purchases on mobile storefronts'
+      ],
+      recommendedTitle: 'Console & Additional Availability',
+      recommended: [
+        'PlayStation 4 release date: 2018-04-10',
+        'PlayStation Store publisher: RABABA DESIGN ESTABLISHMENT',
+        'Google Play lists availability on Windows through Google Play Games on PC',
+        'PS4 store listing notes optional online play with support for up to 8 players'
+      ]
+    },
+    newsletter: {
+      heading: 'Stay In The Drift',
+      subHeading: 'Get Hajwala updates, improvements, and announcements from Rababa Games.',
+      consentText: 'I agree to receive Hajwala news and accept the Privacy Policy.',
+      infoText: 'You can unsubscribe at any time. For privacy details, review the Rababa Games privacy policy.',
+      buttonText: 'Subscribe'
+    },
+    footer: {
+      logo: '',
+      ageRatingImage: '',
+      copyrightText: 'HAJWALA by RABABA Games'
+    }
+  };
+
   const hajwalaPayload = {
     title: 'HAJWALA: Drift Revolution',
     category: 'Sports',
-    shortDescription: 'A free-to-play racing sensation with immersive drift physics, high-quality graphics, and nonstop adrenaline across mobile and PlayStation.',
-    description: 'Hajwala, the sensational racing game by Rababa Games, took the MENA region by storm since its 2016 launch. With high-quality graphics and immersive physics, it is a thrilling free-to-play experience on iOS and Android. Boasting over 120 million downloads and 500,000 copies sold on PS stores, Hajwala stands as a mobile gaming triumph, continuously updated with new tracks and features for an adrenaline-pumping experience. Get ready for the ultimate racing thrill.',
-    image: 'images/game-img.webp',
-    thumbnail: 'images/game-img.webp',
+    shortDescription: 'Rababa Games\' flagship drifting racer with deep customization, huge car variety, online play for up to 8 players, and major popularity across mobile and PlayStation.',
+    description: 'Hajwala is a long-running racing and drifting game from Rababa Games. Official store descriptions highlight car and character customization, custom track creation, tuning, multiple gameplay styles, and social online sessions with voice and text chat. The game is available across major mobile platforms and PlayStation 4, with Google Play listing 50M+ downloads and official store copy citing more than 100 million downloads worldwide.',
+    image: hajwalaScreenOne,
+    thumbnail: hajwalaScreenTwo,
+    bannerImage: hajwalaHeroImage,
+    galleryImages: [
+      { url: hajwalaScreenOne, fileId: '', name: 'Hajwala Screenshot 1', thumbnailUrl: hajwalaScreenOne },
+      { url: hajwalaScreenTwo, fileId: '', name: 'Hajwala Screenshot 2', thumbnailUrl: hajwalaScreenTwo },
+      { url: hajwalaScreenThree, fileId: '', name: 'Hajwala Screenshot 3', thumbnailUrl: hajwalaScreenThree }
+    ],
     platforms: ['Google Play (Android)', 'App Store (Apple)', 'Huawei Store', 'PS4/PS5'],
     links: {
-      googlePlay: 'https://play.google.com/store/apps/details?id=com.rababagames.hajwalah&hl=ar&gl=US&pli=1',
-      appStore: 'https://apps.apple.com/kw/app/hajwala-drift/id1070657319?l=ar&platform=ipad',
+      googlePlay: 'https://play.google.com/store/apps/details?id=com.rababagames.hajwalah&hl=en&gl=US',
+      appStore: 'https://apps.apple.com/kw/app/hajwala-drift/id1070657319',
       huaweiStore: 'https://appgallery.huawei.com/app/C100487857',
       ps: 'https://store.playstation.com/ar-kw/product/EP3334-CUSA11340_00-RG2017XX2018RG18',
       amazonAppStore: '',
@@ -151,7 +320,8 @@ const seedHajwalaGame = async () => {
       steam: '',
       epicStore: ''
     },
-    trailerUrl: '',
+    trailerUrl: 'https://youtu.be/ZyreS5abIVk',
+    pageContent: hajwalaPageContent,
     featured: true,
     isNewRelease: false,
     isActive: true,

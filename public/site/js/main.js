@@ -50,14 +50,30 @@ document.addEventListener("DOMContentLoaded", function () {
           ].filter(item => typeof item.href === "string" && item.href.trim() !== "").slice(0, 4);
         }
 
+        function normalizeGameTitle(title) {
+          const value = String(title || "").trim();
+          return /^hajwala\s*1$/i.test(value) ? "Hajwala Drift Revolution" : value;
+        }
+
         function renderGalleryGames(games) {
           const gallery = document.querySelector(".game-gallery");
-          if (!gallery || !Array.isArray(games) || games.length === 0) {
+          if (!gallery) {
+            return;
+          }
+
+          if (!Array.isArray(games) || games.length === 0) {
+            gallery.innerHTML = `
+              <div class="row">
+                <div class="col-12">
+                  <p class="text">No games found in database.</p>
+                </div>
+              </div>
+            `;
             return;
           }
 
           const cards = games.slice(0, 8).map((game) => {
-            const safeTitle = (game.title || "Untitled Game").trim();
+            const safeTitle = normalizeGameTitle(game.title || "Untitled Game") || "Untitled Game";
             const image = game.image || "images/game-img.webp";
             const promo = game.isNewRelease ? '<p class="promotion uppercase">new</p>' : "";
             return `
@@ -104,34 +120,26 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         function setFeaturedGame(game) {
+          const latestHeading = document.querySelector(".latest-game.left .heading");
+          const latestDescription = document.querySelector(".latest-game.left .text");
+          const detailsLink = document.querySelector(".latest-game.left a.features");
+
           if (!game) {
+            if (latestHeading) latestHeading.textContent = "No featured game";
+            if (latestDescription) latestDescription.textContent = "Add and mark a game as featured in dashboard to show it here.";
+            if (detailsLink) detailsLink.href = "#";
             return;
           }
 
-          const heroTitle = document.querySelector(".hero-game-caption h2");
-          if (heroTitle) heroTitle.textContent = game.title || heroTitle.textContent;
+          const displayTitle = normalizeGameTitle(game.title || "");
+          const featuredHeadingTitle = /hajwala/i.test(displayTitle) ? "Hajwala" : displayTitle;
 
-          const heroDescription = document.querySelector(".hero-game-description p");
-          if (heroDescription) heroDescription.textContent = game.shortDescription || game.description || heroDescription.textContent;
+          if (latestHeading) latestHeading.textContent = featuredHeadingTitle || latestHeading.textContent;
 
-          const heroVideo = document.querySelector(".hero-game-description .video-button");
-          if (heroVideo && game.trailerUrl) heroVideo.href = game.trailerUrl;
-
-          const latestHeading = document.querySelector(".latest-game.left .heading");
-          if (latestHeading) latestHeading.textContent = game.title || latestHeading.textContent;
-
-          const latestDescription = document.querySelector(".latest-game.left .text");
           if (latestDescription) latestDescription.textContent = game.shortDescription || game.description || latestDescription.textContent;
 
-          const latestImage = document.querySelector("img.feature-img");
-          if (latestImage && game.image) {
-            latestImage.src = game.image;
-            latestImage.alt = `${game.title || "Featured"} cover`;
-          }
-
-          const detailsLink = document.querySelector(".latest-game.left a.features");
           if (detailsLink) {
-            detailsLink.href = `/games/game1/index.html?id=${encodeURIComponent(game._id)}#features`;
+            detailsLink.href = `/games/game1/index.html?id=${encodeURIComponent(game._id)}`;
           }
 
           const storeAnchors = document.querySelectorAll(".latest-game.left .dropdown-menu .dropdown-item");
@@ -187,26 +195,6 @@ document.addEventListener("DOMContentLoaded", function () {
           window.location.assign(anchor.href);
         }, true);
 
-        //SHOW COOKIE BAR
-        function showCookieBar() {
-            document.getElementById("policy-bar").classList.add("open");
-        }
-        function hideCookieBar() {
-            document.getElementById("policy-bar").classList.remove("open");
-        }
-        function showCookieMessage() {
-            document.getElementById("policy-message").classList.add("open");
-        }
-        function hideCookieMessage() {
-            document.getElementById("policy-message").classList.remove("open");
-        }
-    
-        // --- Event bindings ---
-        document.getElementById("close-policy-message")?.addEventListener("click", hideCookieMessage);
-        document.getElementById("close-policy-bar")?.addEventListener("click", hideCookieBar);
-
-        showCookieBar();
-    
         // HAMBURGER MENU ANIMATION --------------------------------------------------------------------------------------------------------
         document.getElementById("hamburger").addEventListener("click", function () {
           this.classList.toggle("open");
@@ -226,9 +214,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // LOAD MAIN PAGE SCRIPTS
         if (document.body.classList.contains("main-page")) {
+          const hoverLogoImage = "https://ik.imagekit.io/x5ffdja5c/rababa-site/public-assets-images-images_eeFrm-vGG.png";
 
           // HERO SECTION ANIMATIONS ---------------------------------------------------------------------------------------------------------
-          const heroGame = document.querySelector(".hero-game-caption");
+          const heroGame = document.querySelector(".hero-game-caption[data-hover-reveal='true']");
 
           function triggerHeroAnimation() {
             document.querySelectorAll(".curtain-left, .curtain-right").forEach(el => {
@@ -241,8 +230,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const heroImg = document.querySelector(".hero-game-img");
             if (heroImg) {
-              heroImg.style.transition = "margin-left 0.5s ease";
-              heroImg.style.marginLeft = "20%";
+              if (!heroImg.dataset.hoverLogoApplied) {
+                heroImg.src = hoverLogoImage;
+                heroImg.alt = "Rababa Games logo";
+                heroImg.classList.add("hero-logo-reveal");
+                heroImg.dataset.hoverLogoApplied = "true";
+              }
+              heroImg.style.transition = "margin-left 0.5s ease, width 0.5s ease";
+              heroImg.style.marginLeft = "12%";
+              heroImg.style.width = "76%";
             }
             
             const caption = document.querySelector(".hero-game-caption");
@@ -280,34 +276,7 @@ document.addEventListener("DOMContentLoaded", function () {
           });
       
 
-          // LOAD GOOGLE MAP ---------------------------------------------------------------------------------------------------------------------
-          // Initialize and add the map
-          let map;
-
-          async function initMap() {
-            // Location: New York
-            const position = { lat: 40.6700, lng: -73.9400};
-            // Request needed libraries.
-            //@ts-ignore
-            const { Map } = await google.maps.importLibrary("maps");
-            const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
-
-            // The map, centered at Uluru
-            map = new Map(document.getElementById("map-canvas"), {
-              zoom: 12,
-              center: position,
-              mapId: "783dc2f5edce5c0b",
-            });
-
-            // Map marker
-            const marker = new AdvancedMarkerElement({
-              map: map,
-              position: position,
-              title: "Office",
-            });
-          }
-
-          initMap();
+          // Map removed - no API key configured
         } 
 
         //COPYRIGHT YEAR ----------------------------------------------------------------------------------------------------------------------------------

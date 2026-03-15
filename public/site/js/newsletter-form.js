@@ -1,25 +1,79 @@
 document.addEventListener('DOMContentLoaded', function() {
-    "use strict"
+    "use strict";
 
-    document.getElementById("newsletterForm").addEventListener("submit", function(e) {
+    const form = document.getElementById("newsletterForm");
+    const messageEl = document.getElementById("newsletter-msg");
+
+    if (!form || !messageEl) {
+        return;
+    }
+
+    const getApiBase = () => {
+        if (typeof window.RABABA_API_BASE === 'string' && window.RABABA_API_BASE.trim() !== '') {
+            return window.RABABA_API_BASE.replace(/\/$/, '');
+        }
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            return 'http://localhost:5000';
+        }
+        return 'https://api.rababagames.com';
+    };
+
+    const setMessage = (text, ok) => {
+        messageEl.textContent = text;
+        messageEl.style.color = ok ? '#28a745' : '#dc3545';
+    };
+
+    form.addEventListener("submit", async function(e) {
         e.preventDefault();
 
-        const form = e.target;
-        const data = new FormData(form);
+        const emailInput = form.querySelector('#newsletter');
+        const consentInput = form.querySelector('input[name="gdpr[email]"]');
+        const submitButton = form.querySelector('button[type="submit"]');
 
-        fetch("php/subscribe.php", {
-        method: "POST",
-        body: data
-        })
-        .then(res => res.json())
-        .then(response => {
-        document.getElementById("newsletter-msg").textContent = response.message;
-        document.getElementById("newsletter-msg").style.color = response.success ? "green" : "red";
-        if (response.success) form.reset();
-        })
-        .catch(() => {
-        document.getElementById("newsletter-msg").textContent = "Something went wrong.";
-        document.getElementById("newsletter-msg").style.color = "red";
-        });
+        const email = (emailInput?.value || '').trim();
+        const consentGiven = Boolean(consentInput?.checked);
+
+        if (!email) {
+            setMessage('Email is required.', false);
+            return;
+        }
+
+        if (!consentGiven) {
+            setMessage('Please accept the privacy consent to subscribe.', false);
+            return;
+        }
+
+        submitButton.disabled = true;
+        const previousButtonText = submitButton.textContent;
+        submitButton.textContent = 'Subscribing...';
+
+        try {
+            const response = await fetch(`${getApiBase()}/api/newsletter`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email,
+                    consentGiven,
+                    sourcePage: window.location.href,
+                }),
+            });
+
+            const payload = await response.json();
+
+            if (response.ok && payload?.success) {
+                setMessage(payload.message || 'Thanks for subscribing.', true);
+                form.reset();
+            } else {
+                setMessage(payload?.error || 'Subscription failed. Please try again.', false);
+            }
+        } catch (error) {
+            console.error('Newsletter subscribe error:', error);
+            setMessage('Network error. Please try again later.', false);
+        } finally {
+            submitButton.disabled = false;
+            submitButton.textContent = previousButtonText || 'Subscribe';
+        }
     });
 });

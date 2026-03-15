@@ -342,82 +342,6 @@ button {
     transition: all 0.5s ease;
 }
 
-/* --------------------------- /////////// COOKIE MANAGEMENT /////////// --------------------------- */
-#policy-message, .policy-notice-bar {
-    position: fixed;
-    width: 100%;
-    background-color: #111;
-    color: #fff;
-    z-index: 1060;
-    transition: 0.5s ease;
-    border-top: 1px solid #6522E1;
-}
-
-#policy-message {
-    bottom: -50%;
-    height: 60px;
-    padding: 12px;
-    text-align: center;
-}
-
-#policy-message.open {
-    bottom: 0;
-}
-
-.policy-notice-bar {
-    height: auto;
-    bottom: -50%;
-    padding: 1rem;
-}
-
-.policy-notice-bar a {
-    color:#6522E1;
-}
-
-.policy-notice-bar a:hover {
-    text-decoration: underline;
-}
-
-.policy-notice-bar.open {
-    bottom: 0;
-}
-
-.policy-notice-bar p, #policy-message p {
-    display: inline-block;
-    margin-bottom: 0;
-}
-
-.policy-notice-bar .close, #close-policy-message {
-    background-color: #FFF;
-    color: #000;
-    float: right;
-}
-
-.policy-bar-buttons {
-    display: inline-block;
-}
-
-.policy-notice-bar button {
-    display: inline-block;
-    margin-left: 1rem;
-}
-
-.policy-notice-bar button, .policy-notice-bar .close, #close-policy-message {
-    padding: 5px 10px;
-    transition: 0.3s;
-    border: none;
-    border-radius: 2px;
-}
-
-.policy-notice-bar button:hover, .policy-notice-bar .close:hover, #close-policy-message:hover {
-    background-color: #6522E1;
-    color: #FFF;
-}
-
-.checkbox-wrapper {
-    margin: 1rem 0;
-}
-
 /* --------------------------- /////////// HEADER AND NAVIGATION /////////// --------------------------- */
 #main-logo {
     color: #fff;
@@ -694,20 +618,93 @@ button {
 
 /* --------------------------- /////////// LATEST GAME SECTION /////////// --------------------------- */
 .latest-game.right {
-    background-image: linear-gradient(90deg, rgba(54, 37, 219, 0.9) 0%, rgba(181, 60, 242, 0.9) 100%), url(../images/featured-game-bg.webp);
+    background-image:
+        linear-gradient(120deg, rgba(36, 18, 120, 0.92) 0%, rgba(111, 40, 190, 0.85) 60%, rgba(20, 10, 70, 0.97) 100%),
+        url(https://image.api.playstation.com/vulcan/ap/rnd/202012/1509/HQaEUzPcg1to5JSlNUpdOPMo.jpg);
     background-blend-mode: multiply;
     background-position: center;
     background-size: cover;
     clip-path: polygon(20% 0, 100% 0%, 100% 100%, 0% 100%);
     min-height: 720px;
     height: auto;
+    overflow: hidden;
+    position: relative;
 }
 
-.feature-img {
+/* ---- Rababa animated deco elements inside .latest-game.right ---- */
+.rg-deco {
     position: absolute;
-    height: auto;
-    width: auto;
-    right: 25%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Pulsing rings */
+.rg-ring {
+    border-radius: 50%;
+    border: 1.5px solid rgba(255, 255, 255, 0.18);
+    animation: rg-ring-pulse 5s ease-in-out infinite;
+}
+.rg-ring-1 {
+    width: 380px;
+    height: 380px;
+    bottom: 10%;
+    right: 8%;
+    animation-delay: 0s;
+}
+.rg-ring-2 {
+    width: 240px;
+    height: 240px;
+    bottom: 18%;
+    right: 18%;
+    animation-delay: 1.4s;
+    border-color: rgba(163, 133, 255, 0.22);
+}
+.rg-ring-3 {
+    width: 140px;
+    height: 140px;
+    bottom: 28%;
+    right: 29%;
+    animation-delay: 2.8s;
+    border-color: rgba(255, 255, 255, 0.28);
+}
+@keyframes rg-ring-pulse {
+    0%, 100% { transform: scale(1);    opacity: 0.18; }
+    50%        { transform: scale(1.12); opacity: 0.55; }
+}
+
+/* Speed streaks */
+.rg-streak {
+    height: 2px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, transparent 0%, rgba(163, 133, 255, 0.7) 50%, transparent 100%);
+    animation: rg-streak-slide 2.8s ease-in-out infinite;
+}
+.rg-streak-1 { width: 200px; top: 28%; left: 22%; animation-delay: 0s; }
+.rg-streak-2 { width: 130px; top: 42%; left: 25%; animation-delay: 0.7s; }
+.rg-streak-3 { width: 260px; top: 57%; left: 18%; animation-delay: 1.4s; }
+.rg-streak-4 { width: 100px; top: 70%; left: 30%; animation-delay: 2.1s; }
+@keyframes rg-streak-slide {
+    0%   { transform: translateX(-60px); opacity: 0; }
+    25%  { opacity: 1; }
+    100% { transform: translateX(80px);  opacity: 0; }
+}
+
+/* Radial glow orb at the focal point */
+.rg-glow {
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(111, 52, 255, 0.38) 0%, transparent 70%);
+    bottom: 15%;
+    right: 12%;
+    pointer-events: none;
+    z-index: 1;
+    animation: rg-glow-pulse 4s ease-in-out infinite;
+}
+@keyframes rg-glow-pulse {
+    0%, 100% { transform: scale(1);    opacity: 0.5; }
+    50%        { transform: scale(1.25); opacity: 0.9; }
 }
 
 .latest-game.left {
@@ -1477,10 +1474,6 @@ input#newsletter {
 }
 
 @media (max-width : 1200px){
-    .policy-bar-buttons, .policy-notice-bar .close {
-        margin-top: 10px;
-    }
-
     .curtain-left {
         display: none;
     }
@@ -1501,10 +1494,6 @@ input#newsletter {
         display: none;
     }
     
-    .feature-img {
-        display: none;
-    }
-
     .hero-caption {
         left: 5%;
     }
@@ -1691,26 +1680,9 @@ input#newsletter {
         margin-bottom: 5rem;
     }
 
-    #policy-bar button {
-        display: block;
-        margin-top: 1rem;
-        margin-left: 0;
-    }
-
-    #close-policy-bar {
-        float: none;
-    }
-
-    #close-policy-message {
-        float: none;
-    }
-    
 }
 
 @media (max-width : 692px) {
-    #policy-message {
-        height: 150px;
-    }
 
     .hero {
         margin-bottom: 0;
@@ -1772,5 +1744,106 @@ input#newsletter {
     .footer-links li {
         display: block;
         margin-bottom: 8px;
+    }
+}
+
+/* --------------------------- /////////// RABABA ADDITIONS /////////// --------------------------- */
+
+/* Platform icon sizing — keep all badges at consistent height on desktop */
+.platforms img {
+    height: 36px;
+    width: auto;
+    display: inline-block;
+}
+
+/* Studio location strip (replaces map canvas) */
+.studio-location-row {
+    margin-top: 3rem;
+}
+
+.studio-location-strip {
+    background: #111;
+    border-left: 4px solid #6522E1;
+    border-radius: 6px;
+    padding: 1.25rem 2rem;
+    font-size: 1.05rem;
+    color: #ccc;
+}
+
+.studio-location-strip i {
+    color: #A385FF;
+    margin-right: 0.75rem;
+}
+
+.studio-location-strip strong {
+    color: #FFF;
+}
+
+/* Member-description: prevent text overflow inside small cards */
+.member-description p {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    padding: 0.15rem 0.75rem;
+}
+
+/* Company-first hero customization for the homepage */
+.main-page .hero-game {
+    background-image: linear-gradient(90deg, rgba(10, 10, 10, 0.82) 0%, rgba(42, 21, 110, 0.78) 100%), url(https://rababagames.com/public/uploads/about/1701081255.png);
+}
+
+.main-page .hero-game-img {
+    margin-top: 20%;
+    border-radius: 10px;
+    box-shadow: 0 22px 48px rgba(0, 0, 0, 0.45);
+}
+
+.main-page .hero-game-img.hero-logo-reveal {
+    background-color: #ececec;
+    object-fit: contain;
+    padding: 0.9rem;
+}
+
+.main-page .hero-game-caption {
+    width: min(560px, 92%);
+    margin: 24% auto 0;
+}
+
+.main-page .hero-game-caption h2 {
+    letter-spacing: 0.18rem;
+    font-size: 2.4rem;
+}
+
+.main-page .hero-game-description {
+    opacity: 1;
+}
+
+.main-page .hero-company-stats {
+    list-style: none;
+    padding-left: 0;
+    margin: 1rem 0 1.5rem;
+}
+
+.main-page .hero-company-stats li {
+    display: inline-block;
+    margin: 0.35rem 0.35rem 0 0;
+    padding: 0.35rem 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 999px;
+    font-size: 0.82rem;
+    letter-spacing: 0.08rem;
+}
+
+.main-page .hover-arrow,
+.main-page .discard {
+    display: none !important;
+}
+
+@media (max-width : 1200px) {
+    .main-page .hero-game-caption {
+        margin-top: 14%;
     }
 }
