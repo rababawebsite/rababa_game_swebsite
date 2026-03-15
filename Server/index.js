@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
+import { dirname, join, resolve } from 'path';
 
 // Configure dotenv FIRST before anything else
 const __filename = fileURLToPath(import.meta.url);
@@ -9,8 +9,56 @@ dotenv.config({ path: join(__dirname, '.env') });
 
 console.log('📁 Environment loaded. ADMIN_EMAIL:', process.env.ADMIN_EMAIL);
 
+let connectionListenersAttached = false;
+let databaseConnectionPromise = null;
+let appPromise = null;
+
+const connectToDatabase = async (mongoose) => {
+  if (!process.env.MONGODB_URI) {
+    console.warn('MONGODB_URI is not configured. Database-backed routes will fail until it is set.');
+    return;
+  }
+
+  if (mongoose.connection.readyState === 1) {
+    return;
+  }
+
+  if (!connectionListenersAttached) {
+    mongoose.connection.on('error', (err) => {
+      console.error('MongoDB connection error (event):', err);
+    });
+
+    mongoose.connection.on('disconnected', () => {
+      console.warn('MongoDB disconnected');
+    });
+
+    mongoose.connection.on('reconnected', () => {
+      console.log('MongoDB reconnected');
+    });
+
+    connectionListenersAttached = true;
+  }
+
+  if (!databaseConnectionPromise) {
+    const mongooseOptions = {
+      serverSelectionTimeoutMS: 30000,
+    };
+
+    databaseConnectionPromise = mongoose.connect(process.env.MONGODB_URI, mongooseOptions)
+      .then(() => {
+        console.log('✅ Connected to MongoDB');
+      })
+      .catch((err) => {
+        console.error('❌ MongoDB connection error:', err);
+        databaseConnectionPromise = null;
+      });
+  }
+
+  await databaseConnectionPromise;
+};
+
 // Now dynamically import everything else AFTER env is loaded
-async function startServer() {
+async function createApp() {
   const express = (await import('express')).default;
   const cors = (await import('cors')).default;
   const mongoose = (await import('mongoose')).default;
@@ -103,41 +151,9 @@ async function startServer() {
   // Apply strict rate limiter to auth routes
   app.use('/api/auth/login', authLimiter);
 
-  // ============ DATABASE ============
-
-  // Connect to MongoDB with sensible options and add connection event listeners
-  const mongooseOptions = {
-    serverSelectionTimeoutMS: 30000 // 30s
-  };
-
-  mongoose.connect(process.env.MONGODB_URI, mongooseOptions)
-    .then(() => console.log('✅ Connected to MongoDB'))
-    .catch((err) => console.error('❌ MongoDB connection error:', err));
-
-  mongoose.connection.on('error', (err) => {
-    console.error('MongoDB connection error (event):', err);
+  connectToDatabase(mongoose).catch((err) => {
+    console.error('Initial database connection attempt failed:', err);
   });
-
-  mongoose.connection.on('disconnected', () => {
-    console.warn('MongoDB disconnected - will attempt to reconnect periodically');
-  });
-
-  mongoose.connection.on('reconnected', () => {
-    console.log('MongoDB reconnected');
-  });
-
-  // Periodically ensure connection (helps recover from transient network blips)
-  const ensureConnection = async () => {
-    if (mongoose.connection.readyState !== 1) {
-      try {
-        await mongoose.connect(process.env.MONGODB_URI, mongooseOptions);
-        console.log('✅ Reconnected to MongoDB (ensureConnection)');
-      } catch (err) {
-        console.error('Reconnection attempt failed:', err && err.message ? err.message : err);
-      }
-    }
-  };
-  setInterval(ensureConnection, 30 * 1000); // try every 30s
 
   // ============ ROUTES ============
 
@@ -175,9 +191,33 @@ async function startServer() {
     });
   });
 
-  app.listen(PORT, () => {
-    console.log(`🚀 Server running on port ${PORT}`);
-  });
+  return app;
 }
 
-startServer().catch(console.error);
+const getApp = async () => {
+  if (!appPromise) {
+    appPromise = createApp();
+  }
+
+  return appPromise;
+};
+
+const handler = async (req, res) => {
+  const app = await getApp();
+  return app(req, res);
+};
+
+export default handler;
+
+const isDirectRun = Boolean(process.argv[1]) && resolve(process.argv[1]) === __filename;
+
+if (isDirectRun) {
+  getApp()
+    .then((app) => {
+      const PORT = process.env.PORT || 5000;
+      app.listen(PORT, () => {
+        console.log(`🚀 Server running on port ${PORT}`);
+      });
+    })
+    .catch(console.error);
+}
