@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
           if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
             return "http://localhost:5000";
           }
-          return "https://api.rababagames.com";
+          return "https://rababa-game-swebsite-79cg.vercel.app";
         }
 
         async function fetchJson(path) {
@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
           if (!game) {
             if (latestHeading) latestHeading.textContent = "No featured game";
             if (latestDescription) latestDescription.textContent = "Add and mark a game as featured in dashboard to show it here.";
-            if (detailsLink) detailsLink.href = "#";
+            if (detailsLink) detailsLink.href = "/games/game1/index.html";
             return;
           }
 

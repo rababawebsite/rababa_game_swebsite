@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 
-const API_BASE = (import.meta.env.VITE_API_BASE_URL || "http://localhost:5000").replace(/\/$/, "")
+const API_BASE = (import.meta.env.VITE_API_BASE_URL || "https://rababa-game-swebsite-79cg.vercel.app").replace(/\/$/, "")
 
 const categoryOptions = ["Simulation", "RPG", "Strategy", "Action", "Puzzle", "Adventure", "Sports", "Other"]
 

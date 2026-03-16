@@ -6,7 +6,7 @@ const router = express.Router();
 // Serve a dynamic sitemap.xml built from active games
 router.get('/sitemap.xml', async (req, res) => {
   try {
-    const baseUrl = process.env.FRONTEND_URL || 'https://www.vyllogames.com';
+    const baseUrl = process.env.FRONTEND_URL || 'https://rababa-game-swebsite.vercel.app';
 
     const games = await Game.find({ isActive: true }).select('updatedAt createdAt').lean();
 
@@ -23,7 +23,7 @@ router.get('/sitemap.xml', async (req, res) => {
     for (const g of games) {
       const lastmod = (g.updatedAt || g.createdAt) ? new Date(g.updatedAt || g.createdAt).toISOString().split('T')[0] : null;
       urls.push({
-        loc: `${baseUrl}/game/${g._id}`,
+        loc: `${baseUrl}/games/game1/index.html?id=${g._id}`,
         lastmod,
         changefreq: 'monthly',
         priority: '0.6'

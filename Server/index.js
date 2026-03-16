@@ -9,6 +9,9 @@ dotenv.config({ path: join(__dirname, '.env') });
 
 console.log('📁 Environment loaded. ADMIN_EMAIL:', process.env.ADMIN_EMAIL);
 
+const DEFAULT_FRONTEND_URL = 'https://rababa-game-swebsite.vercel.app';
+const DEFAULT_DASHBOARD_URL = 'https://rababa-game-swebsite-4nn9.vercel.app';
+
 let connectionListenersAttached = false;
 let databaseConnectionPromise = null;
 let appPromise = null;
@@ -107,7 +110,10 @@ async function createApp() {
   });
 
   // CORS configuration: allow production origins plus common localhost origins
-  const prodOrigins = [process.env.FRONTEND_URL, process.env.DASHBOARD_URL]
+  const prodOrigins = [
+    process.env.FRONTEND_URL || DEFAULT_FRONTEND_URL,
+    process.env.DASHBOARD_URL || DEFAULT_DASHBOARD_URL,
+  ]
     .filter(Boolean)
     .flatMap((value) => value.split(',').map((origin) => origin.trim()).filter(Boolean));
   const localOrigins = [

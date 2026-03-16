@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
             return 'http://localhost:5000';
         }
-        return 'https://api.rababagames.com';
+        return 'https://rababa-game-swebsite-79cg.vercel.app';
     };
 
     // Email validation regex
