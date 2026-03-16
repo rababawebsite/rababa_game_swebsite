@@ -140,6 +140,13 @@ html, body {
     overflow-x: hidden;
 }
 
+img,
+video,
+iframe {
+    max-width: 100%;
+    height: auto;
+}
+
 /* -Universal padding for section that are not full width- */
 .padded {
     padding: 10rem 15rem;
@@ -1742,6 +1749,16 @@ input#newsletter {
     .contact-box {
         width: 100%;
     }
+
+    .game-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 0.75rem;
+    }
+
+    .game-tags li {
+        margin-left: 0;
+    }
 }
 
 @media (max-width : 768px) {
@@ -1755,6 +1772,72 @@ input#newsletter {
 
     .latest-game.left {
         margin-bottom: 5rem;
+    }
+
+    .padded {
+        padding: 4rem 1.5rem;
+    }
+
+    .hero-caption {
+        top: 33%;
+        left: 1rem;
+        right: 1rem;
+        text-align: center;
+    }
+
+    .hero-caption p:last-of-type {
+        float: none;
+    }
+
+    .hero-game-caption {
+        width: min(94%, 620px);
+        margin: 34% auto 0;
+    }
+
+    .main-page .hero-unit {
+        min-height: 100svh;
+        height: auto;
+    }
+
+    .main-page .hero-game {
+        display: flex;
+        align-items: flex-start;
+        padding-top: 4.75rem;
+        padding-bottom: 1.5rem;
+        overflow-y: auto;
+    }
+
+    .main-page .hero-game .row {
+        width: 100%;
+        margin: 0;
+    }
+
+    .main-page .hero-game-caption {
+        width: min(94%, 640px);
+        margin: 0 auto;
+        padding: 0 0.6rem;
+    }
+
+    .main-page .hero-game-description {
+        max-width: 42rem;
+        margin: 0 auto;
+    }
+
+    .hero-game-caption h2 {
+        letter-spacing: 0.18rem;
+        font-size: 1.85rem;
+    }
+
+    .latest-game.left .text {
+        width: 100%;
+    }
+
+    .job-card {
+        padding: 1.5rem;
+    }
+
+    .footer-links li {
+        margin: 0 8px;
     }
 
 }
@@ -1821,6 +1904,111 @@ input#newsletter {
     .footer-links li {
         display: block;
         margin-bottom: 8px;
+    }
+
+    .hero-unit {
+        min-height: 100svh;
+        height: auto;
+    }
+
+    .hero-caption {
+        top: 28%;
+    }
+
+    .hero-caption h1 {
+        font-size: 2.7rem;
+        letter-spacing: 0.14rem;
+        line-height: 1.05;
+    }
+
+    .hero-caption p {
+        font-size: 1.25rem;
+    }
+
+    .hero-game-caption {
+        width: 94%;
+        margin-top: 68%;
+        padding: 0;
+    }
+
+    .main-page .hero-game {
+        padding-top: 4.25rem;
+        padding-bottom: 1.25rem;
+    }
+
+    .main-page .hero-game-caption {
+        margin-top: 0;
+    }
+
+    .hero-game-caption h2 {
+        font-size: 1.45rem;
+        letter-spacing: 0.08rem;
+    }
+
+    .main-page .hero-game-caption h2 {
+        font-size: 1.42rem;
+        letter-spacing: 0.06rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .main-page .hero-game-description p {
+        font-size: 1rem;
+        line-height: 1.45;
+        margin-bottom: 0.35rem;
+        padding-right: 0;
+    }
+
+    .main-page .hero-company-stats li {
+        font-size: 0.74rem;
+        letter-spacing: 0.04rem;
+        padding: 0.3rem 0.55rem;
+    }
+
+    .button,
+    .button.features,
+    .newsletter-button,
+    #contactForm .button {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .company-info li i {
+        margin-right: 0.5rem;
+    }
+}
+
+@media (max-width : 360px) {
+    #main-logo {
+        font-size: 1.2rem;
+        letter-spacing: 0.2rem;
+        margin: 0;
+    }
+
+    .hero-caption h1 {
+        font-size: 2.2rem;
+    }
+
+    .main-page .hero-game {
+        padding-top: 4rem;
+    }
+
+    .hero-game-caption {
+        margin-top: 72%;
+    }
+
+    .hero-game-caption p,
+    .main-page .hero-game-caption p {
+        font-size: 0.92rem;
+    }
+
+    .main-page .hero-company-stats li {
+        display: block;
+        margin-right: 0;
+    }
+
+    .padded {
+        padding: 3.25rem 1rem;
     }
 }
 
