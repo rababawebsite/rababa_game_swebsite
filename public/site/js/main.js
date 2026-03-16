@@ -95,6 +95,45 @@ document.addEventListener("DOMContentLoaded", function () {
           }
         }
 
+        function renderGallerySkeleton(count = 6) {
+          const gallery = document.querySelector(".game-gallery");
+          if (!gallery) {
+            return;
+          }
+
+          const placeholders = Array.from({ length: count }).map(() => `
+            <div class="col-lg-4 game-card skeleton-card" aria-hidden="true">
+              <div class="skeleton-media db-shimmer"></div>
+              <div class="skeleton-title db-shimmer"></div>
+              <div class="skeleton-subtitle db-shimmer"></div>
+            </div>
+          `).join("");
+
+          gallery.innerHTML = `<div class="row">${placeholders}</div>`;
+        }
+
+        function setFeaturedLoading() {
+          const latestHeading = document.querySelector(".latest-game.left .heading");
+          const latestDescription = document.querySelector(".latest-game.left .text");
+          const detailsLink = document.querySelector(".latest-game.left a.features");
+
+          if (latestHeading) {
+            latestHeading.innerHTML = '<span class="db-skeleton-line db-skeleton-heading db-shimmer"></span>';
+          }
+
+          if (latestDescription) {
+            latestDescription.innerHTML = `
+              <span class="db-skeleton-line db-skeleton-paragraph db-shimmer"></span>
+              <span class="db-skeleton-line db-skeleton-paragraph short db-shimmer"></span>
+            `;
+          }
+
+          if (detailsLink) {
+            detailsLink.classList.add("is-loading");
+            detailsLink.setAttribute("aria-disabled", "true");
+          }
+        }
+
         function setFooterSocialLinks(links) {
           if (!links) {
             return;
@@ -123,6 +162,11 @@ document.addEventListener("DOMContentLoaded", function () {
           const latestHeading = document.querySelector(".latest-game.left .heading");
           const latestDescription = document.querySelector(".latest-game.left .text");
           const detailsLink = document.querySelector(".latest-game.left a.features");
+
+          if (detailsLink) {
+            detailsLink.classList.remove("is-loading");
+            detailsLink.removeAttribute("aria-disabled");
+          }
 
           if (!game) {
             if (latestHeading) latestHeading.textContent = "No featured game";
@@ -162,6 +206,9 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
           }
 
+          setFeaturedLoading();
+          renderGallerySkeleton();
+
           try {
             const [games, featuredGames, platformLinks] = await Promise.all([
               fetchJson("/api/games"),
@@ -174,6 +221,8 @@ document.addEventListener("DOMContentLoaded", function () {
             setFooterSocialLinks(platformLinks);
           } catch (error) {
             console.error("Failed to load homepage data:", error.message);
+            renderGalleryGames([]);
+            setFeaturedGame(null);
           }
         }
 

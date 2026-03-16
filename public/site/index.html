@@ -156,12 +156,14 @@
                             <h2 class="uppercase">
                                 <span class="gradient-text big-text">Explore</span>
                                 <br>
-                                <span class="heading">Loading featured game...</span>
+                                <span class="heading"><span class="db-skeleton-line db-skeleton-heading db-shimmer"></span></span>
                             </h2>
                             <br><br>
-                            <p class="text">Featured game data is loaded from the database.
+                            <p class="text">
+                                <span class="db-skeleton-line db-skeleton-paragraph db-shimmer"></span>
+                                <span class="db-skeleton-line db-skeleton-paragraph short db-shimmer"></span>
                             </p>
-                            <a href="/games/game1/index.html" class="button features uppercase">Game Details</a>
+                            <a href="/games/game1/index.html" class="button features uppercase is-loading" aria-disabled="true">Game Details</a>
                         </div>
                     </div>
                     <div class="col-xl-6 latest-game right">
@@ -202,8 +204,20 @@
                 </div>
                 <div class="row game-gallery capitalized">
                     <div class="row">
-                        <div class="col-12">
-                            <p class="text">Loading games from database...</p>
+                        <div class="col-lg-4 game-card skeleton-card" aria-hidden="true">
+                            <div class="skeleton-media db-shimmer"></div>
+                            <div class="skeleton-title db-shimmer"></div>
+                            <div class="skeleton-subtitle db-shimmer"></div>
+                        </div>
+                        <div class="col-lg-4 game-card skeleton-card" aria-hidden="true">
+                            <div class="skeleton-media db-shimmer"></div>
+                            <div class="skeleton-title db-shimmer"></div>
+                            <div class="skeleton-subtitle db-shimmer"></div>
+                        </div>
+                        <div class="col-lg-4 game-card skeleton-card" aria-hidden="true">
+                            <div class="skeleton-media db-shimmer"></div>
+                            <div class="skeleton-title db-shimmer"></div>
+                            <div class="skeleton-subtitle db-shimmer"></div>
                         </div>
                     </div>
                 </div>

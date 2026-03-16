@@ -841,6 +841,83 @@ button {
     padding: 1rem;
 }
 
+/* - Database loading skeletons - */
+.db-shimmer {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.08) 15%, rgba(255, 255, 255, 0.18) 45%, rgba(255, 255, 255, 0.08) 85%);
+    background-size: 220% 100%;
+    animation: db-shimmer 1.4s linear infinite;
+}
+
+@keyframes db-shimmer {
+    0% {
+        background-position: 180% 0;
+    }
+    100% {
+        background-position: -40% 0;
+    }
+}
+
+.db-skeleton-line {
+    display: block;
+    border-radius: 0.375rem;
+}
+
+.db-skeleton-heading {
+    width: 16rem;
+    max-width: 85%;
+    height: 2.2rem;
+    margin-top: 0.3rem;
+}
+
+.db-skeleton-paragraph {
+    width: 82%;
+    height: 0.95rem;
+    margin-top: 0.6rem;
+}
+
+.db-skeleton-paragraph.short {
+    width: 60%;
+}
+
+.latest-game.left .button.features.is-loading {
+    pointer-events: none;
+    opacity: 0.75;
+}
+
+.skeleton-card {
+    pointer-events: none;
+    cursor: default;
+    position: relative;
+    margin-bottom: 1.2rem;
+}
+
+.skeleton-card .skeleton-media {
+    width: 100%;
+    min-height: 17rem;
+    border-radius: 0.25rem;
+    opacity: 0.95;
+}
+
+.skeleton-card .skeleton-title {
+    position: absolute;
+    left: 2.4rem;
+    top: 2rem;
+    width: 10rem;
+    height: 1.6rem;
+    border-radius: 0.35rem;
+}
+
+.skeleton-card .skeleton-subtitle {
+    position: absolute;
+    left: 2.4rem;
+    top: 4.3rem;
+    width: 6.5rem;
+    height: 1.15rem;
+    border-radius: 0.35rem;
+}
+
 /* --------------------------- /////////// TEAM SECTION /////////// --------------------------- */
 .team-wrapper {
     position: relative;
