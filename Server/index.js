@@ -111,8 +111,10 @@ async function createApp() {
 
   // CORS configuration: allow production origins plus common localhost origins
   const prodOrigins = [
-    process.env.FRONTEND_URL || DEFAULT_FRONTEND_URL,
-    process.env.DASHBOARD_URL || DEFAULT_DASHBOARD_URL,
+    DEFAULT_FRONTEND_URL,
+    DEFAULT_DASHBOARD_URL,
+    process.env.FRONTEND_URL,
+    process.env.DASHBOARD_URL,
   ]
     .filter(Boolean)
     .flatMap((value) => value.split(',').map((origin) => origin.trim()).filter(Boolean));
