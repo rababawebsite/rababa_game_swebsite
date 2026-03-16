@@ -771,6 +771,10 @@ button {
     color: #111;
 }
 
+.mobile-featured-cta {
+    display: none;
+}
+
 /* --------------------------- /////////// GAMES SECTION /////////// --------------------------- */
 .game-tags {
     margin-bottom: 1.5625rem;
@@ -1577,6 +1581,12 @@ input#newsletter {
     .hero-game-img {
         display: none;
     }
+
+    .main-page .hero-game-img {
+        display: block;
+        width: min(72%, 340px);
+        margin: 0 auto 1rem;
+    }
     
     .hero-caption {
         left: 5%;
@@ -1629,7 +1639,26 @@ input#newsletter {
     }
 
     .latest-game.right {
+        display: block;
+        min-height: 360px;
+        clip-path: none;
+        border-radius: 10px;
+    }
+
+    .latest-game.left .featured-details-link {
         display: none;
+    }
+
+    .mobile-featured-cta {
+        display: block;
+        text-align: center;
+        margin-top: 0.9rem;
+    }
+
+    .mobile-featured-cta .button.features {
+        width: min(92%, 520px);
+        margin: 0 auto;
+        display: inline-block;
     }
 
     .team-wrapper .col-lg-3:nth-of-type(2n) {
@@ -1772,6 +1801,10 @@ input#newsletter {
 
     .latest-game.left {
         margin-bottom: 5rem;
+    }
+
+    .latest-game.right {
+        min-height: 280px;
     }
 
     .padded {
@@ -2110,5 +2143,82 @@ input#newsletter {
 @media (max-width : 1200px) {
     .main-page .hero-game-caption {
         margin-top: 14%;
+    }
+}
+
+@media (max-width : 768px) {
+    .main-page .hero-game {
+        padding-top: 5rem;
+    }
+
+    .main-page .hero-game-img {
+        width: min(58%, 235px);
+        display: block;
+        max-width: 100%;
+        margin: 1.3rem auto 0.85rem;
+    }
+
+    .main-page .hero-game-caption {
+        width: min(95%, 380px);
+        margin: 0 auto;
+    }
+
+    .main-page .hero-game-caption h2 {
+        font-size: 1.95rem;
+        letter-spacing: 0.08rem;
+        line-height: 1.08;
+        margin-bottom: 0.55rem;
+    }
+
+    .main-page .hero-game-description {
+        max-width: 24rem;
+        margin: 0 auto;
+    }
+
+    .main-page .hero-game-description p {
+        font-size: 1.05rem;
+        line-height: 1.35;
+        margin-bottom: 0.45rem;
+    }
+
+    .main-page .hero-company-stats {
+        margin: 0.8rem 0 1rem;
+    }
+}
+
+@media (max-width : 480px) {
+    .main-page .hero-game {
+        padding-top: 4.7rem;
+    }
+
+    .main-page .hero-game-img {
+        width: min(55%, 205px);
+        display: block;
+        max-width: 100%;
+        padding: 0.45rem;
+        margin: 1.9rem auto 0.75rem;
+    }
+
+    .main-page .hero-game-caption {
+        width: min(95%, 330px);
+    }
+
+    .main-page .hero-game-caption h2 {
+        font-size: 1.52rem;
+        line-height: 1.04;
+        letter-spacing: 0.05rem;
+        margin-bottom: 0.45rem;
+    }
+
+    .main-page .hero-game-description p {
+        font-size: 0.9rem;
+        line-height: 1.32;
+    }
+
+    .main-page .hero-company-stats li {
+        font-size: 0.7rem;
+        letter-spacing: 0.03rem;
+        padding: 0.28rem 0.5rem;
+        margin: 0.3rem 0.22rem 0 0;
     }
 }

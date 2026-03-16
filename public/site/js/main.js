@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
         function setFeaturedLoading() {
           const latestHeading = document.querySelector(".latest-game.left .heading");
           const latestDescription = document.querySelector(".latest-game.left .text");
-          const detailsLink = document.querySelector(".latest-game.left a.features");
+          const detailsLinks = document.querySelectorAll(".featured-details-link");
 
           if (latestHeading) {
             latestHeading.innerHTML = '<span class="db-skeleton-line db-skeleton-heading db-shimmer"></span>';
@@ -128,10 +128,10 @@ document.addEventListener("DOMContentLoaded", function () {
             `;
           }
 
-          if (detailsLink) {
+          detailsLinks.forEach((detailsLink) => {
             detailsLink.classList.add("is-loading");
             detailsLink.setAttribute("aria-disabled", "true");
-          }
+          });
         }
 
         function setFooterSocialLinks(links) {
@@ -161,17 +161,19 @@ document.addEventListener("DOMContentLoaded", function () {
         function setFeaturedGame(game) {
           const latestHeading = document.querySelector(".latest-game.left .heading");
           const latestDescription = document.querySelector(".latest-game.left .text");
-          const detailsLink = document.querySelector(".latest-game.left a.features");
+          const detailsLinks = document.querySelectorAll(".featured-details-link");
 
-          if (detailsLink) {
+          detailsLinks.forEach((detailsLink) => {
             detailsLink.classList.remove("is-loading");
             detailsLink.removeAttribute("aria-disabled");
-          }
+          });
 
           if (!game) {
             if (latestHeading) latestHeading.textContent = "No featured game";
             if (latestDescription) latestDescription.textContent = "Add and mark a game as featured in dashboard to show it here.";
-            if (detailsLink) detailsLink.href = "/games/game1/index.html";
+            detailsLinks.forEach((detailsLink) => {
+              detailsLink.href = "/games/game1/index.html";
+            });
             return;
           }
 
@@ -182,9 +184,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
           if (latestDescription) latestDescription.textContent = game.shortDescription || game.description || latestDescription.textContent;
 
-          if (detailsLink) {
+          detailsLinks.forEach((detailsLink) => {
             detailsLink.href = `/games/game1/index.html?id=${encodeURIComponent(game._id)}`;
-          }
+          });
 
           const storeAnchors = document.querySelectorAll(".latest-game.left .dropdown-menu .dropdown-item");
           const stores = firstStoreLinks(game.links);
@@ -230,7 +232,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Force navigation for game links in case another listener cancels clicks.
         document.addEventListener("click", function (event) {
-          const anchor = event.target.closest(".game-gallery .game-card a, .latest-game.left a.features");
+          const anchor = event.target.closest(".game-gallery .game-card a, .latest-game a.features");
           if (!anchor) {
             return;
           }
@@ -269,6 +271,8 @@ document.addEventListener("DOMContentLoaded", function () {
           const heroGame = document.querySelector(".hero-game-caption[data-hover-reveal='true']");
 
           function triggerHeroAnimation() {
+            const isSmallScreen = window.matchMedia("(max-width: 768px)").matches;
+
             document.querySelectorAll(".curtain-left, .curtain-right").forEach(el => {
               el.classList.add("curtain-open");
             });
@@ -286,12 +290,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 heroImg.dataset.hoverLogoApplied = "true";
               }
               heroImg.style.transition = "margin-left 0.5s ease, width 0.5s ease";
-              heroImg.style.marginLeft = "12%";
-              heroImg.style.width = "76%";
+              heroImg.style.marginLeft = isSmallScreen ? "auto" : "12%";
+              heroImg.style.marginRight = isSmallScreen ? "auto" : "0";
+              heroImg.style.width = isSmallScreen ? "60%" : "76%";
             }
             
             const caption = document.querySelector(".hero-game-caption");
-            if (caption) caption.style.transform = "translate3d(0, -100px, 0)";
+            if (caption) {
+              caption.style.transform = isSmallScreen ? "translate3d(0, 0, 0)" : "translate3d(0, -100px, 0)";
+            }
 
             const description = document.querySelector(".hero-game-description");
             if (description) description.style.opacity = "1";
@@ -314,6 +321,13 @@ document.addEventListener("DOMContentLoaded", function () {
               // optionally remove this listener after first trigger
               heroGame.removeEventListener("touchstart", handleTouch);
             }, { passive: false });
+
+            // Auto-run reveal on touch devices and smaller viewports where hover is unavailable.
+            if (window.matchMedia("(hover: none), (max-width: 1200px)").matches) {
+              window.requestAnimationFrame(() => {
+                triggerHeroAnimation();
+              });
+            }
           }
 
     
