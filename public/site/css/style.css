@@ -286,6 +286,8 @@ button {
     cursor: pointer;
     text-align: center;
     text-transform: uppercase;
+    -webkit-appearance: none;
+    appearance: none;
 }
 
 .button:visited {

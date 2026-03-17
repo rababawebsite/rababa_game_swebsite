@@ -398,7 +398,7 @@
                         <br>
                         <form id="newsletterForm" method="POST">
                                 <!-- Email field -->
-                                <input type="email" name="EMAIL" id="newsletter" placeholder="Your email here" required size="35" autocomplete="on" data-error="Email is required" aria-label="email field">
+                                <input type="email" name="EMAIL" id="newsletter" placeholder="Your email here" required size="35" autocomplete="email" data-error="Email is required" aria-label="email field" readonly onfocus="this.removeAttribute('readonly');" onclick="this.removeAttribute('readonly');">
 
                                 <!-- GDPR consent checkboxes -->
                                 <label>
